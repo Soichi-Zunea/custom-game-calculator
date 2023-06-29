@@ -1,17 +1,17 @@
 /* Place your JavaScript in this file */
 
 //CHANGE THESE CONSTANTS
-const gameString = ["Sword Blocking Toes"] //create more gamebuttons if more games
+const gameString = ["Sword Blox Online:Rebirth"] //create more gamebuttons if more games
 const categoryString = [
     //add more if games are added
-    [//Sword_Blocking_Toes
+    [//Sword Blox Online:Rebirth
         "Player Data" ,"Weapon and Gear Data",
         "Mob Data","Boss Data"
     ]
 ]
 const subsectionString = [
     //add more if games are added
-    [//Sword_Blocking_Toes
+    [//Sword Blox Online:Rebirth
         [//Player Data
             'Health','Experience','Stamina','Damage','Strength',
             'Agility','Defense','Vitality','Luck','Smithing Experience'
@@ -30,7 +30,7 @@ const subsectionString = [
 ]
 const calculatorString = [
     //add more if games are added
-    [//Sword_Blocking_Toes
+    [//Sword Blox Online:Rebirth
         [//Player Data
             [//Health
                 'Player Level',' ','','',
@@ -322,7 +322,7 @@ const calculatorString = [
     ]
 ]
 const dropdownString = [
-    [//Sword Blocking Toes
+    [//Sword Blox Online:Rebirth
         [//Player Data
             [//Health
             ],
@@ -372,7 +372,7 @@ const dropdownString = [
     ]
 ]
 const visualString = [
-    [//Sword Blocking Toes
+    [//Sword Blox Online:Rebirth
         [//Player Data
             [//Health
                 'Player Base Health','Player Health','','',''
@@ -517,7 +517,6 @@ function setupRevert(revertTitle){
 
 //Stops the toes from being pressed, opening up more toes
 function stopToes(pressedItem){
-    //document.getElementById('demo').innerHTML ="toes: "+pressedItem;
     if(document.getElementById(pressedItem).className == "gameTitle"){
         for(let i = 0; i < document.getElementsByClassName("categoryTitle").length; i++){  
             document.getElementsByClassName("categoryTitle")[i].hidden = false;
@@ -559,7 +558,6 @@ function stopToes(pressedItem){
         for(let i = 0; i < document.getElementsByClassName("calculatorTitle").length; i++){
             document.getElementsByClassName("calculatorTitle")[i].hidden = true;
         }
-        //document.getElementById('demo').innerHTML = 'toes: output';
         loadToes(pressedItem);
         //console.log("Hid calculatorButtons and showed visualButton");
     }
