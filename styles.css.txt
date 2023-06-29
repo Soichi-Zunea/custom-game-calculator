@@ -1,0 +1,28 @@
+/* Place your CSS styles in this file */
+
+h1 {
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: normal;
+}
+div{
+    text-align: center;
+}
+.gameTitle{
+    padding: 10px;
+}
+.categoryTitle{
+    padding: 10px;
+}
+.subsectionTitle{
+    padding: 10px;
+}
+.calculatorTitle{
+    padding: 10px;
+}
+.visualTitle{
+    padding: 10px;
+}
+.revertTitle{
+    padding: 10px;
+}
