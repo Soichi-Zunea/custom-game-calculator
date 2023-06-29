@@ -514,6 +514,34 @@ function setupRevert(revertTitle){
         document.getElementsByClassName(revertTitle)[i].hidden = true;
     }
 }
+//To be used for graphs.. still researching
+function setupCanvas(){
+    //definitely not even close to done, don't call
+    myCanvas = document.getElementById('canv');
+    
+    myCanvas.offscreenCanvas = document.createElement("CANVAS");
+    myCanvas.offscreenCanvas.width = myCanvas.width;
+    myCanvas.offscreenCanvas.height = myCanvas.height;
+
+    //myCanvas.getContext("2d").drawImage(myCanvas.offScreenCanvas, 0, 0);
+
+    const ctx = myCanvas.getContext("2d", { alpha: false });
+    // Get the DPR and size of the canvas
+    const dpr = window.devicePixelRatio;
+    const rect = myCanvas.getBoundingClientRect();
+
+    // Set the "actual" size of the canvas
+    myCanvas.width = rect.width * dpr;
+    myCanvas.height = rect.height * dpr;
+
+    // Scale the context to ensure correct drawing operations
+    ctx.scale(dpr, dpr);
+
+    // Set the "drawn" size of the canvas
+    myCanvas.style.width = `${rect.width}px`;
+    myCanvas.style.height = `${rect.height}px`;
+    //myCanvas.hidden = false;
+}
 
 //Stops the toes from being pressed, opening up more toes
 function stopToes(pressedItem){
@@ -526,7 +554,6 @@ function stopToes(pressedItem){
         }
         document.getElementById('rev1').innerHTML = document.getElementById(pressedItem).innerHTML;
         document.getElementById('rev1').hidden = false;
-        //loads toes to be seen~
         loadToes(pressedItem);
     }
     if(document.getElementById(pressedItem).className == "categoryTitle"){
@@ -559,7 +586,6 @@ function stopToes(pressedItem){
             document.getElementsByClassName("calculatorTitle")[i].hidden = true;
         }
         loadToes(pressedItem);
-        //console.log("Hid calculatorButtons and showed visualButton");
     }
     if(document.getElementById(pressedItem).className == "revertTitle"){
         
@@ -634,7 +660,6 @@ function stopToes(pressedItem){
 
 function loadToes(pressedItem){
     if(document.getElementById(pressedItem).className == "gameTitle"){
-        
         //load categoryToes
         for(let i = 0; i < document.getElementsByClassName("gameTitle").length; i++){
             for(let v = 0; v < document.getElementsByClassName("categoryTitle").length; v++){
@@ -644,7 +669,6 @@ function loadToes(pressedItem){
                 }
             }
         }
-        //console.log("Hid gameButton and showed categoryButtons");
     }
     if(document.getElementById(pressedItem).className == "categoryTitle"){
         
@@ -661,15 +685,14 @@ function loadToes(pressedItem){
                 }
             }
         }
-        //console.log("Hid categoryButtons and showed subsectionButtons");
     }
     if(document.getElementById(pressedItem).className == "subsectionTitle"){
         //load calculator toes, much more crust
         //how about instead of going through all, we can look at revs, if rev1.innerHTML = gam1.innerHTML etc
-        var a = 0;
+        var a = 0; //change to let later
         for(let i = 0; i < document.getElementsByClassName("gameTitle").length; i++){
             //if(document.getElementsByClassName("gameTitle")[i].innerHTML == document.getElementById("rev1").innerHTML){
-                //maybe use?
+                //use, change later, it will take less data
             //}
             for(let v = 0; v < document.getElementsByClassName("categoryTitle").length; v++){
                 for(let s = 0; s < document.getElementsByClassName("subsectionTitle").length; s++){
@@ -684,13 +707,11 @@ function loadToes(pressedItem){
                                     document.getElementsByClassName("calculatorTitle")[t].hidden = true;
                                 }
                                 else if(document.getElementsByClassName("calculatorTitle")[t].tagName === 'SELECT' && document.getElementsByClassName("calculatorTitle")[t].length === 0){
-                                    //console.log(dropdownString[i][v][s][a])
                                     for(let b = 0; b < dropdownString[i][v][s][a].length; b++){
                                         let y = document.createElement("OPTION");
                                         y.innerHTML = dropdownString[i][v][s][a][b];
                                         document.getElementsByClassName("calculatorTitle")[t].appendChild(y);
                                     }
-                                    //console.log(a)
                                     a++;  
                                 }
                             }
@@ -700,7 +721,6 @@ function loadToes(pressedItem){
             }
         }
         a=0;
-        //console.log("Hid subsectionButtons and showed calculatorButtons");
     }
     if(document.getElementById(pressedItem).className == "calculatorTitle"){
         //load visual titles and graphs/tables(later)
@@ -710,54 +730,47 @@ function loadToes(pressedItem){
                     if(document.getElementsByClassName('categoryTitle')[v].innerHTML == document.getElementById('rev2').innerHTML){
                         for(let s = 0; s < document.getElementsByClassName('subsectionTitle').length; s++){
                             if(document.getElementsByClassName('subsectionTitle')[s].innerHTML == document.getElementById('rev3').innerHTML){
+                                const c = [];
+                                let noPass;
+                                noPass = false;
+                                for(let b = 0; b < document.getElementsByClassName('calculatorTitle').length; b++){
+                                    if(document.getElementsByClassName('calculatorTitle')[b].tagName == "INPUT" && document.getElementsByClassName('calculatorTitle')[b].type == "checkbox"){
+                                        if(calculatorString[i][v][s][b] == ' '){
+                                            c.push(document.getElementsByClassName('calculatorTitle')[b].checked);
+                                            noPass = true;
+                                        }
+                                    }
+                                    if(document.getElementsByClassName('calculatorTitle')[b].tagName == "SELECT"){
+                                        if(document.getElementsByClassName('calculatorTitle')[b].value != undefined && document.getElementsByClassName('calculatorTitle')[b].value != ''){
+                                            c.push(document.getElementsByClassName('calculatorTitle')[b].value);
+                                            noPass = true;
+                                        }
+                                    }
+                                        
+                                    if(noPass == false){
+                                        if(document.getElementsByClassName('calculatorTitle')[b].tagName == "INPUT" && document.getElementsByClassName('calculatorTitle')[b].type == "number" ){
+                                            //check for undefined and stop those toes from attacking the queen yaaaaa
+                                            //remember to set all values to 0 or 1 when clicking rev1/2/3
+                                            if(document.getElementsByClassName('calculatorTitle')[b].value != undefined && calculatorString[i][v][s][b] == ' '){
+                                                c.push(document.getElementsByClassName('calculatorTitle')[b].value);
+                                            }
+                                        }
+                                    }
+                                    noPass = false;
+                                }
                                 for(let t = 0; t < document.getElementsByClassName('visualTitle').length; t++){
-                                    //console.log(visualString[i][v][s][t]);
                                     document.getElementsByClassName('visualTitle')[t].innerHTML = visualString[i][v][s][t]+": ";
                                     
                                     if(visualString[i][v][s][t] == ''){
                                         document.getElementsByClassName('visualTitle')[t].hidden = true;
                                     }
-                                    const c = [];
-                                    let noPass;
-                                    noPass = false;
-                                    for(let b = 0; b < document.getElementsByClassName('calculatorTitle').length; b++){
-                                        
-                                        if(document.getElementsByClassName('calculatorTitle')[b].tagName == "INPUT" && document.getElementsByClassName('calculatorTitle')[b].type == "checkbox"){
-                                            if(calculatorString[i][v][s][b] == ' '){
-                                                //console.log(document.getElementsByClassName('calculatorTitle')[b].checked);
-                                                c.push(document.getElementsByClassName('calculatorTitle')[b].checked);
-                                                noPass = true;
-                                            }
-                                        }
-                                        if(document.getElementsByClassName('calculatorTitle')[b].tagName == "SELECT"){
-                                            if(document.getElementsByClassName('calculatorTitle')[b].value != undefined && document.getElementsByClassName('calculatorTitle')[b].value != ''){
-                                                //console.log(document.getElementsByClassName('calculatorTitle')[b].value);
-                                                c.push(document.getElementsByClassName('calculatorTitle')[b].value);
-                                                noPass = true;
-                                            }
-                                        }
-                                        
-                                        if(noPass == false){
-                                            if(document.getElementsByClassName('calculatorTitle')[b].tagName == "INPUT" && document.getElementsByClassName('calculatorTitle')[b].type == "number" ){
-                                                //check for undefined and stop those toes from attacking the queen yaaaaa
-                                                //remember to set all values to 0 or 1 when clicking rev1/2/3
-                                                //console.log(document.getElementsByClassName('calculatorTitle')[b].innerHTML);
-                                                if(document.getElementsByClassName('calculatorTitle')[b].value != undefined && calculatorString[i][v][s][b] == ' '){
-                                                    //console.log(document.getElementsByClassName('calculatorTitle')[b].value);
-                                                    c.push(document.getElementsByClassName('calculatorTitle')[b].value);
-                                                }
-                                            }
-                                        }
-                                        noPass = false;
-                                    }
-                                    
                                     while(c.length < 4){
                                         c.push('0')
                                     }
-                                    
                                     document.getElementsByClassName('visualTitle')[t].innerHTML += 
-                                    formulaToes(document.getElementById('rev2').innerHTML,document.getElementById('rev3').innerHTML,c[0],c[1],c[2],c[3],t)
-                                    //console.log(c);
+                                    formulaToes(document.getElementById('rev2').innerHTML,document.getElementById('rev3').innerHTML,c[0],c[1],c[2],c[3],t);
+                                    //console.log(c); //useful for bug testing input
+                                    
                                 }
                                 console.log("Submitted values...")
                             }
@@ -775,10 +788,9 @@ function forceAmountToes(changedItem){
         if(document.getElementById(changedItem).value == ''){
             document.getElementById(changedItem).value = 0;
         } 
-        //console.log(document.getElementById(changedItem).value);
     }
 }
-
+//change to Decimal later to incorporate more numbers and higher precision
 function formulaToes(parent, enter, d1, d2, d3, d4, i){
     let output;
     output = 0.001;
@@ -797,7 +809,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     baseHealth += -31339438.195*Math.pow(level, -1.8993698279);
                     baseHealth += 3.58965212725*Math.pow(level, 1.41199359695);
                     baseHealth += 111.690224049;
-                    //baseHealth = Math.floor(baseHealth * 100) / 100;
                     output =  baseHealth;
                 }
                 if(i == 1){
@@ -812,7 +823,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     health += 111.690224049;
                     //health from dexterity
                     health += totalDex*((vitality / 10) + 10);
-                    //health = Math.floor(health * 100) / 100;
                     output =  health;
                 }
             }
@@ -821,7 +831,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 if(i == 0){
                     let experience;
                     experience = 3*level*level + 9*level - 3;
-                    //experience = Math.floor(experience * 100) / 100;
                     output =  experience;
                 }
                 if(i == 1){
@@ -846,7 +855,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                         percentageSaved = 10* Math.floor(level / 100);
                     }
                     expSaved *= percentageSaved / 100;
-                    //expSaved = Math.floor(expSaved * 100) / 100;
                     output =  expSaved;
                 }
             }
@@ -858,13 +866,11 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 if(i == 0){
                     let baseStamina;
                     baseStamina = 100 + 5*level;
-                    //baseStamina = Math.floor(baseStamina * 100) / 100;
                     output =  baseStamina;
                 }
                 if(i == 1){
                     let stamina;
                     stamina = 100 + 5*level + (agility + strength + vitality) / 10;
-                    //stamina = Math.floor(stamina) / 100;
                     output =  stamina;
                 }
             }
@@ -875,7 +881,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 if(i == 0){
                     let playerDmg;
                     playerDmg = strength * baseDmg / 250 + baseDmg;
-                    //playerDmg = Math.floor(playerDmg * 100) / 100;
                     output =  playerDmg;
                 }
                 if(i == 1){
@@ -893,9 +898,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     else if(type == "Dagger"){
                         wtype = 1.7;
                     }
-                    //maybe have a few if statements to set weaponType here or in the JFrame
                     critDmg = strength * baseDmg / 250 + baseDmg + wtype * baseDmg;
-                    //critDmg = Math.floor(critDmg * 100) / 100;
                     output =  critDmg;
                 }
             }
@@ -905,19 +908,16 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 if(i == 0){
                     let incHealth;
                     incHealth = totalDex * (vitality / 100 + 10);
-                    //incHealth = Math.floor(incHealth * 100) / 100;
                     output =  incHealth;
                 }
                 if(i == 1){
                     let incStamina;
                     incStamina = vitality / 10;
-                    //incStamina = Math.floor(incStamina * 100) / 100;
                     output =  incStamina;
                 }
                 if(i == 2){
                     let incResistance;
                     incResistance = vitality / 100;
-                    //incResistance = Math.floor(incResistance * 100) / 100;
                     output =  incResistance;
                 }
             }
@@ -927,7 +927,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 if(i == 0){
                     let incStamina;
                     incStamina = agility / 10;
-                    //incStamina = Math.floor(incStamina * 10) / 10;
                     output =  incStamina;
                 }
                 if(i == 1){
@@ -935,7 +934,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     //base is 14
                     incWalkSpeed = agility / 250;
                     incWalkSpeed += 14;
-                    //incWalkSpeed = Math.floor(incWalkSpeed * 100) / 100;
                     output =  incWalkSpeed;
                 }
                 if(i == 2){
@@ -948,7 +946,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     else{
                         incRunSpeed += 28;
                     }
-                    //incRunSpeed = Math.floor(incRunSpeed * 100) / 100;
                     output =  incRunSpeed;
                 }
                 if(i == 3){
@@ -975,7 +972,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                         //base is ~5/12 seconds
                         decHitCooldown = 5/12 - agility / 6000;
                     }
-                    //decHitCooldown = Math.floor(decHitCooldown * 100) / 100;
                     if(decHitCooldown < 0)decHitCooldown = 0;
                     output = decHitCooldown;
                 }
@@ -984,7 +980,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     //base is ~1 second
                     decJumpCooldown = 1;
                     decJumpCooldown -= agility / 1000;
-                    //decJumpCooldown = Math.floor(decJumpCooldown * 100) / 100;
                     if(decJumpCooldown < 0)decJumpCooldown = 0;
                     output =  decJumpCooldown;
                 }
@@ -996,21 +991,18 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     //base is 15%
                     incCriticalChance = 15;
                     incCriticalChance += luck / 100;
-                    //incCriticalChance = Math.floor(incCriticalChance * 100) / 100;
                     output =  incCriticalChance;
                 }
                 if(i == 1){
                     let incDropChance;
                     //item not obtained and max luck -> 2x drop chance for said item
                     incDropChance = luck / 100;
-                    //incDropChance = Math.floor(incDropChance * 100) / 100;
                     output =  incDropChance;
                 }
                 if(i == 2){
                     let incMultiHit;
                     //reminder that max % is 15% when both str and luck are maxed
                     incMultiHit = luck / 50;
-                    //incMultiHit = Math.floor(incMultiHit * 100) / 100;
                     output =  incMultiHit;
                 }
             }
@@ -1020,20 +1012,17 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 if(i == 0){
                     let incDmg;
                     incDmg = strength * baseDmg / 250;
-                    //incDmg = Math.floor(incDmg * 100) / 100;
                     output =  incDmg;
                 }
                 if(i == 1){
                     let incStamina;
                     incStamina = strength / 10;
-                    //incStamina = Math.floor(incStamina * 10) / 10;
                     output =  incStamina;
                 }
                 if(i == 2){
                     let incMultiHit;
                     //reminder that max % is 15% when both str and luck are maxed
                     incMultiHit = strength / 50;
-                    //incMultiHit = Math.floor(incMultiHit * 100) / 100;
                     output =  incMultiHit;
                 }
             }
@@ -1044,7 +1033,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 damageReduced = defense / 100;
                 damageReduced += 5;
                 damageReduced *= totalDef;
-                //damageReduced = Math.floor(damageReduced * 100) / 100;
                 output =  damageReduced;
             }
             else if(enter == "Smithing Experience"){
@@ -1064,7 +1052,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 if(type == "Boost w/ Game-pass"){
                 
                 }
-                //smithingExperience = Math.floor(smithingExperience * 10) / 10;
                 smithingExperience = Math.round(smithingExperience);
                 output =  smithingExperience;
             }
@@ -1080,29 +1067,28 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 let weaponDamage;
                 if(legType == "Normal"){
                     if(type == "One-Hand"){
-                        weaponDamage += 1053.85 * Math.pow(weaponSK, -28.6);
+                        weaponDamage = 1053.85 * Math.pow(weaponSK, -28.6);
                         weaponDamage += 0.629964 * Math.pow(weaponSK, 1.37402);
                         weaponDamage += 0.07308 * weaponSK;
                         weaponDamage += -1.8146 * Math.pow(10, 7) * Math.pow(weaponSK, -2.63841) * Math.sin(-3.14165 * Math.pow(weaponSK, -0.000128815));
                     }
                     if(type == "Two-Hand"){
-                        weaponDamage += 0.987388 * Math.pow(weaponSK, 1.36874);
+                        weaponDamage = 0.987388 * Math.pow(weaponSK, 1.36874);
                         weaponDamage += -1.08924 * Math.pow(weaponSK, 0.230083);
                         weaponDamage += 3.82497;
                     }
                     if(type == "Rapier"){
-                        weaponDamage += 0.605588 * Math.pow(weaponSK, 1.36133);
+                        weaponDamage = 0.605588 * Math.pow(weaponSK, 1.36133);
                         weaponDamage += -0.429357 * Math.pow(weaponSK, 0.624546);
                         weaponDamage += 2.766;
                     }
                     if(type == "Dagger"){
-                        weaponDamage += 21.4516 * Math.pow(weaponSK, -1.14518);
+                        weaponDamage = 21.4516 * Math.pow(weaponSK, -1.14518);
                         weaponDamage += 0.511652 * Math.pow(weaponSK, 1.37416);
                         weaponDamage += 0.057236 * weaponSK;
                         weaponDamage += -23.5568 * Math.pow(weaponSK, -1.81666) * Math.sin(2.16489 * Math.pow(weaponSK, 0.731571));
                     }
                 }
-                //weaponDamage = Math.floor(weaponDamage * 10) / 10;
                 output =  weaponDamage;
             }
             else if(enter == "Weapon Worth"){
@@ -1110,7 +1096,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 //estimations
                 let weaponWorth;
                 weaponWorth = 289.008 * Math.pow(weaponSK, 1.00062) - 19.1322;
-                //weaponWorth = Math.floor(weaponWorth * 100) / 100;
                 output = weaponWorth;
             }
             else if(enter == "Skill Damage"){
@@ -1131,29 +1116,36 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                             skillDamage = Math.floor(3.7485 * weaponDmg);
                         }
                         //assumed, first 3 seem to be different, with the last 4 following
-                        //the below formula
+                        //the below formula, I will manually confirm once this is done
                         else{
                             skillDamage = Math.round((2.3485 + 0.2 * skillNumber) * weaponDmg);
                         }
                     }
+                    else{
+                        skillDamage = 0;
+                    }
                 }
-                //skillDamage = Math.floor(skillDamage * 100) / 100;
+                else{
+                    skillDamage = 0;
+                }
                 output = skillDamage;
             }
             else if(enter == "Gear Dexterity"){
                 gearLevel = Number(d1);
                 type = d2;
+                
                 if(i == 0){
                     //estimations
                     let armorDex;
                     if(type == "Normal"){
-                        armorDex += 1.31732 * Math.pow(gearLevel, -500);
+                        armorDex = 1.31732 * Math.pow(gearLevel, -500);
                         armorDex += 1.49258 * Math.pow(gearLevel, 1.33823);
                         armorDex += -0.380652 * gearLevel;
                         armorDex += 7.20016 * Math.pow(gearLevel, -0.939635) * Math.sin(0.079352 * gearLevel);
                     }
                     if(type == "Badge"){
-                        armorDex += 0.457371 * Math.pow(gearLevel, 1.45233);
+                        console.log(type);
+                        armorDex = 0.457371 * Math.pow(gearLevel, 1.45233);
                         armorDex += 5.08398 * Math.pow(gearLevel, 1.0922);
                         armorDex += -4.68986 * gearLevel + 4.16089;
                     }
@@ -1163,14 +1155,13 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     if(type == "Legendary"){
                     
                     }
-                    //armorDex = Math.floor(armorDex * 100) / 100;
                     output = armorDex;
                 }
                 if(i == 1){
                     //estimation
                     let headwearDex;
                     if(type == "Normal"){
-                        headwearDex += 0.556583 * Math.pow(gearLevel, 1.32396);
+                        headwearDex = 0.556583 * Math.pow(gearLevel, 1.32396);
                         headwearDex += 0.422066 * Math.pow(gearLevel, 0.171806);
                         headwearDex += -0.244749 * gearLevel;
                         headwearDex += 4.7701 * Math.pow(10, -9) * Math.pow(gearLevel, 3.71974) * Math.sin(0.20283 * gearLevel);
@@ -1184,7 +1175,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     if(type == "Legendary"){
                     
                     }
-                    //headwearDex = Math.floor(headwearDex * 100) / 100;
                     output = headwearDex;
                 }
             }
@@ -1195,12 +1185,12 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     //estimations
                     let armorDef;
                     if(type == "Normal"){
-                        armorDef += -0.123213 * Math.pow(gearLevel, 1.02241);
+                        armorDef = -0.123213 * Math.pow(gearLevel, 1.02241);
                         armorDef += 0.29208 * Math.pow(gearLevel, 1.32682);
                         armorDef += 0.517196;
                     }
                     if(type == "Badge"){
-                        armorDef += 0.615838 * Math.pow(gearLevel, -0.343928);
+                        armorDef = 0.615838 * Math.pow(gearLevel, -0.343928);
                         armorDef += 0.226188 * Math.pow(gearLevel, 1.36863);
                         armorDef += 0.0898362 * gearLevel;
                         armorDef += 0.51296 * Math.pow(gearLevel, -0.424603) * Math.sin(0.121605 * gearLevel);
@@ -1211,14 +1201,13 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     if(type == "Legendary"){
                     
                     }
-                    //armorDef = Math.floor(armorDef * 100) / 100;
                     output = armorDef;
                 }
                 if(i == 1){
                     //estimation
                     let shieldDefense;
                     if(type == "Normal"){
-                        shieldDefense += 0.156019 * Math.pow(gearLevel, 1.34907);
+                        shieldDefense = 0.156019 * Math.pow(gearLevel, 1.34907);
                         shieldDefense += -1.81904 * Math.pow(gearLevel, 0.0925967);
                         shieldDefense += 2.26883;
                     }
@@ -1231,7 +1220,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     if(type == "Legendary"){
                     
                     }
-                    //shieldDefense = Math.floor(shieldDefense * 100) / 100;
                     output = shieldDefense;
                 }
             }
@@ -1249,7 +1237,6 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 else if(type == "Headwear"){
                     gearWorth = 260 * gearLevel;
                 }
-                //gearWorth = Math.floor(gearWorth * 100) / 100;
                 output = gearWorth;
             }
         }
@@ -1260,21 +1247,18 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 //estimation
                 let mobHealth;
                 mobHealth = Math.round(((-4/3)*mobLevel + 20.6013 * Math.pow(mobLevel, 1.36611) + 19.4195) / 10) * 10;
-                //mobHealth = Math.floor(mobHealth * 100) / 100;
                 output = mobHealth;
             }
             else if(enter == "Experience"){
                 mobLevel = Number(d1);
                 let mobExperience;
                 mobExperience = Math.floor(2.5 * mobLevel + 10 * Math.floor(mobLevel / 10));
-                //mobExperience = Math.floor(mobExperience * 100) / 100;
                 output = mobExperience;
             }
             else if(enter == "Col"){
                 mobLevel = Number(d1);
                 let mobCol;
                 mobCol = 5 * mobLevel;
-                //mobCol = Math.floor(mobCol * 100) / 100;
                 output = mobCol;
             }
         }
@@ -1284,21 +1268,18 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 //estimation
                 let bossHealth;
                 bossHealth = Math.round((503.152 * Math.pow(bossLevel, 1.36891) + 7660.28) / 1000) * 1000;
-                //bossHealth = Math.floor(bossHealth * 100) / 100;
                 output = bossHealth;
             }
             else if(enter == "Experience"){
                 bossLevel = Number(d1);
                 let bossExperience;
                 bossExperience = 180 * bossLevel;
-                //bossExperience = Math.floor(bossExperience * 100) / 100;
                 output = bossExperience;
             }
             else if(enter == "Col"){
                 bossLevel = Number(d1);
                 let bossCol;
                 bossCol = 24 * bossLevel;
-                //bossCol = Math.floor(bossCol * 100) / 100;
                 output = bossCol;
             }
         }
@@ -1322,7 +1303,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
         }
         return output;
 }
-
+//not currently in use, maybe later
 function resetVar(){
     level = 0;
     totalDex = 0;
@@ -1355,5 +1336,6 @@ window.onload = function(){
     setupCalculator("calculatorTitle");
     setupVisual("visualTitle");
     setupRevert("revertTitle");
+    //setupCanvas();
     console.log("Loaded Buttons");
 }
