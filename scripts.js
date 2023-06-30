@@ -344,25 +344,25 @@ const dropdownString = [
             ],
             [//-
             ],
-            [//Smithing Experience, Type
-                ['Normal','Boost','Game-pass','Boost w/ Game-pass']
+            [//Smithing Experience, Type 
+                ['Normal','Boost','Game-pass'] //,'Boost w/ Game-pass'
             ],
         ],
         [
             [//Weapon Damage
                 ['One-Hand','Two-Hand','Rapier','Dagger'],
-                ['Normal','Badge','Game-pass','Legendary',]
+                ['Normal'] //,'Badge','Game-pass','Legendary',
             ],
             [],
             [//Skill Damage
-                ['1','2','3','4','5','6','7'],
-                ['One-Hand','Two-Hand','Rapier','Dagger']
+                ['4','5','6','7'], //'1','2','3', before
+                ['Dagger'], //'One-Hand','Two-Hand','Rapier', before
             ],
             [//Gear Dexterity
-                ['Normal','Badge','Game-pass','Legendary']
+                ['Normal','Badge'] //,'Game-pass','Legendary'
             ],
             [//Gear Defense
-                ['Normal','Badge','Game-pass','Legendary']
+                ['Normal','Badge'] //,'Game-pass','Legendary'
             ],
             [//Gear Worth
                 ['Armor','Shield','Headwear']
