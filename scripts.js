@@ -466,40 +466,46 @@ let gearLevel;
 let mobLevel;
 let bossLevel;
 
+//LETS FOR VISUALS
+let parentG;
+let enterG;
+let data1G;
+let data2G;
+let data3G;
+let data4G;
+let iG;
 
+//CONSTANTS FOR CANVAS
+const width = document.getElementById('canv').width;
+const height = document.getElementById('canv').height;
+let tries;
+tries = 0;
 
 //Sets up the buttons
 function setupGame(gameName){
-    //console.log(document.getElementsByClassName(gameName));
     document.getElementById("starter").hidden = false;
     for(let i = 0; i < document.getElementsByClassName(gameName).length; i++){
         document.getElementsByClassName(gameName)[i].innerHTML = gameString[i];
         document.getElementsByClassName(gameName)[i].hidden = false;
     }
-    //gameNum = document.getElementsByClassName(gameName).length;
 }
 function setupCategory(categoryName){
-    //console.log(document.getElementsByClassName(categoryName));
     for(let i = 0; i < document.getElementsByClassName(categoryName).length; i++){  
         document.getElementsByClassName(categoryName)[i].innerHTML = "Category-Title-"+i;
         document.getElementsByClassName(categoryName)[i].hidden = true;
     }
-    //categoryNum = document.getElementByClassName(categoryName).length;
 }
 function setupSubsection(subsectionName){
-    //console.log(document.getElementsByClassName(subsectionName));
     for(let i = 0; i < document.getElementsByClassName(subsectionName).length; i++){  
         document.getElementsByClassName(subsectionName)[i].innerHTML = "Subsection-Title-"+i;
         document.getElementsByClassName(subsectionName)[i].hidden = true;
     }
 }
 function setupCalculator(calculatorTitle){
-    //console.log(document.getElementsByClassName(calculatorTitle));
     for(let i = 0; i < document.getElementsByClassName(calculatorTitle).length; i++){  
         document.getElementsByClassName(calculatorTitle)[i].innerHTML = "Calculator-Title-"+i;
         document.getElementsByClassName(calculatorTitle)[i].hidden = true;
     }
-    //console.log("Loaded Calculator Button");
 }
 function setupVisual(visualTitle){
     for(let i = 0; i < document.getElementsByClassName(visualTitle).length; i++){
@@ -508,39 +514,14 @@ function setupVisual(visualTitle){
     }
 }
 function setupRevert(revertTitle){
-    //console.log(document.getElementsByClassName(revertTitle));
     for(let i = 0; i < document.getElementsByClassName(revertTitle).length; i++){  
         document.getElementsByClassName(revertTitle)[i].innerHTML = '';
         document.getElementsByClassName(revertTitle)[i].hidden = true;
     }
 }
-//To be used for graphs.. still researching
 function setupCanvas(){
-    //definitely not even close to done, don't call
-    myCanvas = document.getElementById('canv');
-    
-    myCanvas.offscreenCanvas = document.createElement("CANVAS");
-    myCanvas.offscreenCanvas.width = myCanvas.width;
-    myCanvas.offscreenCanvas.height = myCanvas.height;
-
-    //myCanvas.getContext("2d").drawImage(myCanvas.offScreenCanvas, 0, 0);
-
-    const ctx = myCanvas.getContext("2d", { alpha: false });
-    // Get the DPR and size of the canvas
-    const dpr = window.devicePixelRatio;
-    const rect = myCanvas.getBoundingClientRect();
-
-    // Set the "actual" size of the canvas
-    myCanvas.width = rect.width * dpr;
-    myCanvas.height = rect.height * dpr;
-
-    // Scale the context to ensure correct drawing operations
-    ctx.scale(dpr, dpr);
-
-    // Set the "drawn" size of the canvas
-    myCanvas.style.width = `${rect.width}px`;
-    myCanvas.style.height = `${rect.height}px`;
-    //myCanvas.hidden = false;
+    let myCanvas = document.getElementById('canv');
+    myCanvas.hidden = true;    
 }
 
 //Stops the toes from being pressed, opening up more toes
@@ -610,6 +591,7 @@ function stopToes(pressedItem){
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
                 document.getElementsByClassName('visualTitle')[i].hidden = true;
             }
+            document.getElementById('canv').hidden = true;
         }
         if(pressedItem == 'rev2'){
             //hides higher numbered revertTitles, subsectionTitles, calculatorTitles,
@@ -631,6 +613,7 @@ function stopToes(pressedItem){
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
                 document.getElementsByClassName('visualTitle')[i].hidden = true;
             }
+            document.getElementById('canv').hidden = true;
         }
         if(pressedItem == 'rev3'){
             //hides higher numbered revertTitles, calculatorTitles,
@@ -654,6 +637,7 @@ function stopToes(pressedItem){
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
                 document.getElementsByClassName('visualTitle')[i].hidden = true;
             }
+            document.getElementById('canv').hidden = true;
         }
     }
 }
@@ -772,6 +756,7 @@ function loadToes(pressedItem){
                                     //console.log(c); //useful for bug testing input
                                     
                                 }
+                                createGraph();
                                 console.log("Submitted values...")
                             }
                         }
@@ -1303,7 +1288,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
         }
         return output;
 }
-//not currently in use, maybe later
+//not currently in use, resets all formula values
 function resetVar(){
     level = 0;
     totalDex = 0;
@@ -1325,7 +1310,191 @@ function resetVar(){
     
     mobLevel = 0;
     bossLevel = 0;
+}
 
+function createGraph(){
+    let myCanvas = document.getElementById('canv');
+    const ctx = myCanvas.getContext("2d", { alpha: true });
+    myCanvas.hidden = false;
+
+    //Note: The following is code found and adjusted from 
+    //https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas
+    // Get the DPR and size of the canvas
+    const dpr = 2*window.devicePixelRatio;
+    const rect = myCanvas.getBoundingClientRect();
+
+    // Set the "actual" size of the canvas
+    myCanvas.width = rect.width * dpr;
+    myCanvas.height = rect.height * dpr;
+
+    // Scale the context to ensure correct drawing operations
+    ctx.scale(2*dpr, 2.15*dpr);
+
+    // Set the "drawn" size of the canvas
+    myCanvas.style.width = `${2*width}px`;
+    myCanvas.style.height = `${2*height}px`;
+    //end of adjusted code//
+
+    if(tries == 0){
+        myCanvas.hidden = true;
+        tries++;
+        return;
+    }
+
+    ctx.beginPath();
+    
+    let padding = width/20;
+    let labelPadding = width/20;
+    let gridColor = "#c8c8c8";
+    let pointColor = '#000000';
+    let lineColor = "#2c66e6";
+    let pointWidth = 10;
+    let numberYDivisions = 10;
+
+    let MAX = 500;
+    let step = 2;
+    let maxComponents = MAX/step +1;
+
+    let counter;
+    counter = 0;
+    let ymax;
+    ymax = 0;
+    let ymin;
+    ymin = 1e10;
+
+    const xcoords = []; //holds all x coordinates 
+    const ycoords = []; //holds all y coordinates
+
+    //get x and y values to display
+    for(let i = 0; i <= MAX; i += step){
+        xcoords.push(i);
+        ycoords.push(formulaToes(parentG, enterG, i, data2G, data3G, data4G, 0));
+    }
+    //find ycoord max value
+    for(let v = 0; v < MAX/step + 1; v++){
+        if(ycoords[v] > ymax){
+            ymax = ycoords[v];
+        }
+    }
+    //find ycoord lowest value
+    for(let v = 0; v < MAX/step +1; v++){
+        if(ycoords[v] < ymin){
+            ymin = ycoords[v];
+        }
+    }
+
+    //Note: The following is code found and adjusted from 
+    //https://stackoverflow.com/questions/8693342/ by Rodrigo Castro
+    ctx.clearRect(0,0,500,500);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(padding + labelPadding, padding, width - (2 * padding) - labelPadding, height - 2 * padding - labelPadding);
+    ctx.fillStyle = 'black';
+    // create hatch marks and grid lines for y axis.
+    for (let i = 0; i < numberYDivisions+1; i++) {
+        let x0 = padding + labelPadding;
+        let x1 = pointWidth + padding + labelPadding;
+        let y0 = height - ((i * (height - padding * 2 - labelPadding)) / numberYDivisions + padding + labelPadding);
+        let y1 = y0;
+            
+            ctx.strokeStyle = gridColor;
+            ctx.moveTo(padding + labelPadding + 1 + pointWidth, y0);
+            ctx.lineTo(width - padding, y1);
+            ctx.stroke();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            ctx.font = Math.floor(width/45)+'px Arial'
+            let yLabel;
+            yLabel = ""+(parseFloat((i*.1*(ymax-ymin))+ymin).toPrecision(7));
+            if(isNaN(yLabel)){
+                yLabel = '0.00';
+            }
+            let labelWidth = ctx.measureText(yLabel).width;
+            ctx.fillText(yLabel, x0 - Math.floor(labelWidth) - 5, y0 + (5 / 2) - 3);
+            ctx.closePath();
+        if(i != 0){
+            ctx.moveTo(x0, y0);
+            ctx.lineTo(x1, y1);
+            ctx.stroke();
+            
+        }
+
+    }
+    // and for x axis
+    for (let i = 0; i < MAX+1; i++) {
+            
+        let x0 = i * (width - padding * 2 - labelPadding) / (MAX - 1) + padding + labelPadding;
+        let x1 = x0;
+        let y0 = height - padding - labelPadding;
+        let y1 = y0 - pointWidth;
+        if ((i % (((MAX / 10.0)))) == 0) {
+            ctx.strokeStyle = gridColor;
+            ctx.moveTo(x0, height - padding - labelPadding - 1 - pointWidth);
+            ctx.lineTo(x1, padding);
+            ctx.stroke();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            let xLabel = i + "";
+            let labelWidth = ctx.measureText(xLabel).width;
+            ctx.fillText(xLabel, x0 - labelWidth / 2, y0 + (width/45));
+        if(i != 0){
+            ctx.moveTo(x0, y0);
+            ctx.lineTo(x1, y1);
+            ctx.stroke();
+            }
+        }
+    }
+    ctx.moveTo(padding + labelPadding, height - padding - labelPadding);
+    ctx.lineTo(padding + labelPadding, padding);
+    ctx.stroke();
+    ctx.moveTo(padding + labelPadding, height - padding - labelPadding);
+    ctx.lineTo(width - padding, height - padding - labelPadding);
+    ctx.stroke();
+    ctx.closePath();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = 1;
+
+    let xScale = (width - (2 * padding) - labelPadding) / (MAX - 1);
+    let yScale;
+    if(ymax != 0){
+        yScale = (height - 2 * padding - labelPadding) / (ymax - ymin);
+    }
+    else{
+        yScale = 1;
+    }
+
+    //change x and y coords in accordance with the  setup
+    const graphxPoints = [];
+    const graphyPoints = [];
+    for (let i = 0; i < MAX+1; i+= step) {
+        let x1 = Math.floor(i * xScale + padding + labelPadding);
+        let y1;
+        if(ymax != 0){
+            y1 = Math.floor((ymax - ycoords[counter]) * yScale + padding);
+        }
+        else{
+            //statement in case ymax is 0, since this entails that the
+            //function is constant
+            y1 = Math.floor((ymax - ycoords[counter]) * yScale + height/35*padding);
+        }
+        graphxPoints.push(x1);
+        graphyPoints.push(y1);
+        counter++;
+    }
+    //display graph
+    for (let i = 0; i < graphxPoints.length-1; i++) {
+        let x1 = graphxPoints[i];
+        let y1 = graphyPoints[i];
+        let x2 = graphxPoints[i+1];
+        let y2 = graphyPoints[i+1];
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke(); 
+    }
+    //end of adjusted code//
 }
 
 //Calls setup
@@ -1336,6 +1505,7 @@ window.onload = function(){
     setupCalculator("calculatorTitle");
     setupVisual("visualTitle");
     setupRevert("revertTitle");
-    //setupCanvas();
+    setupCanvas();
+    createGraph();
     console.log("Loaded Buttons");
 }
