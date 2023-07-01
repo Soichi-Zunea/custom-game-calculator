@@ -587,6 +587,10 @@ function stopToes(pressedItem){
             }
             for(let i = 0; i < document.getElementsByClassName('calculatorTitle').length; i++){
                 document.getElementsByClassName('calculatorTitle')[i].hidden = true;
+                if(document.getElementsByClassName("calculatorTitle")[i].tagName == "INPUT"){
+                    document.getElementsByClassName('calculatorTitle')[i].value = '0';
+                    document.getElementsByClassName('calculatorTitle')[i].checked = false;
+                }
             }
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
                 document.getElementsByClassName('visualTitle')[i].hidden = true;
@@ -609,6 +613,10 @@ function stopToes(pressedItem){
             }
             for(let i = 0; i < document.getElementsByClassName('calculatorTitle').length; i++){
                 document.getElementsByClassName('calculatorTitle')[i].hidden = true;
+                if(document.getElementsByClassName("calculatorTitle")[i].tagName == "INPUT"){
+                    document.getElementsByClassName('calculatorTitle')[i].value = '0';
+                    document.getElementsByClassName('calculatorTitle')[i].checked = false;
+                }
             }
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
                 document.getElementsByClassName('visualTitle')[i].hidden = true;
@@ -632,6 +640,7 @@ function stopToes(pressedItem){
                 document.getElementsByClassName('calculatorTitle')[i].hidden = true;
                 if(document.getElementsByClassName("calculatorTitle")[i].tagName == "INPUT"){
                     document.getElementsByClassName('calculatorTitle')[i].value = '0';
+                    document.getElementsByClassName('calculatorTitle')[i].checked = false;
                 }
             }
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
