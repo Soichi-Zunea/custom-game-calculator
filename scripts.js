@@ -777,6 +777,13 @@ function forceAmountToes(changedItem){
 }
 //change to Decimal later to incorporate more numbers and higher precision
 function formulaToes(parent, enter, d1, d2, d3, d4, i){
+    parentG = parent;
+    enterG = enter;
+    data1G = d1;
+    data2G = d2;
+    data3G = d3;
+    data4G = d4;
+    iG = i;
     let output;
     output = 0.001;
         if(parent == "Player Data"){
