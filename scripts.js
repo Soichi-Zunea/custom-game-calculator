@@ -35,7 +35,7 @@ const calculatorString = [
             [//Health
                 'Player Level',' ','','',
                 'Total Dexterity',' ','','',
-                '','','','',
+                'Player Vitality',' ','','',
                 '','','','',
                 '','','',''
             ],
@@ -817,7 +817,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     health += 3.58965212725*Math.pow(level, 1.41199359695);
                     health += 111.690224049;
                     //health from dexterity
-                    health += totalDex*((vitality / 10) + 10);
+                    health += totalDex*((vitality / 100) + 10);
                     output =  health;
                 }
                 if(typeof i === 'string' || i instanceof String){
@@ -841,7 +841,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                         str += '-31339438.195*Math.pow(x, -1.8993698279)';
                         str += '+3.58965212725*Math.pow(x, 1.41199359695)';
                         str += '+111.690224049';
-                        str += '+'+totalDex*((vitality / 10) + 10);
+                        str += '+'+totalDex*((vitality / 100) + 10);
                     }
                 }
             }
