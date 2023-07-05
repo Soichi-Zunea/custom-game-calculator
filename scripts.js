@@ -587,14 +587,11 @@ function stopToes(pressedItem){
             }
             for(let i = 0; i < document.getElementsByClassName('calculatorTitle').length; i++){
                 document.getElementsByClassName('calculatorTitle')[i].hidden = true;
-                if(document.getElementsByClassName("calculatorTitle")[i].tagName == "INPUT"){
-                    document.getElementsByClassName('calculatorTitle')[i].value = '0';
-                    document.getElementsByClassName('calculatorTitle')[i].checked = false;
-                }
             }
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
                 document.getElementsByClassName('visualTitle')[i].hidden = true;
             }
+            Plotly.purge('myPlot');
             document.getElementById('canv').hidden = true;
         }
         if(pressedItem == 'rev2'){
@@ -613,14 +610,11 @@ function stopToes(pressedItem){
             }
             for(let i = 0; i < document.getElementsByClassName('calculatorTitle').length; i++){
                 document.getElementsByClassName('calculatorTitle')[i].hidden = true;
-                if(document.getElementsByClassName("calculatorTitle")[i].tagName == "INPUT"){
-                    document.getElementsByClassName('calculatorTitle')[i].value = '0';
-                    document.getElementsByClassName('calculatorTitle')[i].checked = false;
-                }
             }
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
                 document.getElementsByClassName('visualTitle')[i].hidden = true;
             }
+            Plotly.purge('myPlot');
             document.getElementById('canv').hidden = true;
         }
         if(pressedItem == 'rev3'){
@@ -640,12 +634,12 @@ function stopToes(pressedItem){
                 document.getElementsByClassName('calculatorTitle')[i].hidden = true;
                 if(document.getElementsByClassName("calculatorTitle")[i].tagName == "INPUT"){
                     document.getElementsByClassName('calculatorTitle')[i].value = '0';
-                    document.getElementsByClassName('calculatorTitle')[i].checked = false;
                 }
             }
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
                 document.getElementsByClassName('visualTitle')[i].hidden = true;
             }
+            Plotly.purge('myPlot');
             document.getElementById('canv').hidden = true;
         }
     }
@@ -765,7 +759,7 @@ function loadToes(pressedItem){
                                     //console.log(c); //useful for bug testing input
                                     
                                 }
-                                createGraph();
+                                createGraph(calculatorString[i][v][s][0], visualString[i][v][s][0]);
                                 console.log("Submitted values...")
                             }
                         }
@@ -826,6 +820,30 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     health += totalDex*((vitality / 10) + 10);
                     output =  health;
                 }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let str;
+                        str = '-748031721.292*Math.pow(x, -1.90410567265)';
+                        str += '+779370715.358*Math.pow(x, -1.90391429441)';
+                        str += '+424.948514369*Math.pow(x, -28.5977515991)';
+                        str += '+18.908114238*Math.pow(x, 0.894448718694)';
+                        str += '-31339438.195*Math.pow(x, -1.8993698279)';
+                        str += '+3.58965212725*Math.pow(x, 1.41199359695)';
+                        str += '+111.690224049';
+                        return str;
+                    }
+                    if(i == '1'){
+                        let str;
+                        str = '-748031721.292*Math.pow(x, -1.90410567265)';
+                        str += '+779370715.358*Math.pow(x, -1.90391429441)';
+                        str += '+424.948514369*Math.pow(x, -28.5977515991)';
+                        str += '+18.908114238*Math.pow(x, 0.894448718694)';
+                        str += '-31339438.195*Math.pow(x, -1.8993698279)';
+                        str += '+3.58965212725*Math.pow(x, 1.41199359695)';
+                        str += '+111.690224049';
+                        str += '+'+totalDex*((vitality / 10) + 10);
+                    }
+                }
             }
             else if(enter == "Experience"){
                 level = Number(d1);
@@ -858,6 +876,36 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     expSaved *= percentageSaved / 100;
                     output =  expSaved;
                 }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let experience;
+                        experience = '3*x*x + 9*x - 3';
+                        return experience;
+                    }
+                    if(i == '1'){
+                        let percentageSaved;
+                        if(level > 999){
+                            percentageSaved = '90';
+                        }
+                        else{
+                            percentageSaved = '10* Math.floor(x / 100)';
+                        }
+                        return percentageSaved;
+                    }
+                    if(i == '2'){
+                        let expSaved;
+                        expSaved = '3*x*x + 9*x - 3';
+                        let percentageSaved;
+                        if(level > 999){
+                            percentageSaved = '90';
+                        }
+                        else{
+                            percentageSaved = '10* Math.floor(x / 100)';
+                        }
+                        expSaved += '*'+(percentageSaved / 100);
+                        return expSaved;
+                    }
+                }
             }
             else if(enter == "Stamina"){
                 level = Number(d1);
@@ -873,6 +921,18 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     let stamina;
                     stamina = 100 + 5*level + (agility + strength + vitality) / 10;
                     output =  stamina;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let baseStamina;
+                        baseStamina = '100 + 5*x';
+                        return baseStamina;
+                    }
+                    if(i == '1'){
+                        let stamina;
+                        stamina = '100 + 5*x + '+(agility + strength + vitality) / 10;
+                        return stamina;
+                    }
                 }
             }
             else if(enter == "Damage"){
@@ -899,8 +959,35 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     else if(type == "Dagger"){
                         wtype = 1.7;
                     }
+                    //maybe have a few if statements to set weaponType here or in the JFrame
                     critDmg = strength * baseDmg / 250 + baseDmg + wtype * baseDmg;
                     output =  critDmg;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let playerDmg;
+                        playerDmg = strength+'*x / 250 + x';
+                        return playerDmg;
+                    }
+                    if(i == '1'){
+                        let critDmg;
+                        let wtype;
+                        if(type == "One-Hand" || type == "Dual Wield"){
+                            wtype = 1;
+                        }
+                        else if(type == "Two-Hand"){
+                            wtype = 0.5;
+                        }
+                        else if(type == "Rapier"){
+                            wtype = 1.4;
+                        }
+                        else if(type == "Dagger"){
+                            wtype = 1.7;
+                        }
+                        //maybe have a few if statements to set weaponType here or in the JFrame
+                        critDmg = strength +'* baseDmg / 250 + x + '+wtype+' * x';
+                        return critDmg;
+                    }
                 }
             }
             else if(enter == "Vitality"){
@@ -920,6 +1007,23 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     let incResistance;
                     incResistance = vitality / 100;
                     output =  incResistance;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let incHealth;
+                        incHealth = totalDex +'* (x / 100 + 10)';
+                        return incHealth;
+                    }
+                    if(i == '1'){
+                        let incStamina;
+                        incStamina = 'x / 10';
+                        return incStamina;
+                    }
+                    if(i == '2'){
+                        let incResistance;
+                        incResistance = 'x / 100';
+                        return incResistance;
+                    }
                 }
             }
             else if(enter == "Agility"){
@@ -984,6 +1088,65 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     if(decJumpCooldown < 0)decJumpCooldown = 0;
                     output =  decJumpCooldown;
                 }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let incStamina;
+                        incStamina = 'x / 10';
+                        return incStamina;
+                    }
+                    if(i == '1'){
+                        let incWalkSpeed;
+                        //base is 14
+                        incWalkSpeed = 'x / 250';
+                        incWalkSpeed += '+14';
+                        return incWalkSpeed;
+                    }
+                    if(i == '2'){
+                        let incRunSpeed;
+                        //base is 28, dagger gets +2
+                        incRunSpeed = 'x / 50';
+                        if(type == "Dagger"){
+                            incRunSpeed += '+30';
+                        }
+                        else{
+                            incRunSpeed += '+28';
+                        }
+                        return incRunSpeed;
+                    }
+                    if(i == '3'){
+                        //estimations
+                        let decHitCooldown;
+                        if(type == "One-Hand"){
+                            //base is ~5/6 seconds
+                            decHitCooldown = '5/6';
+                            decHitCooldown += '-x / 2000';
+                        }
+                        if(type == "Dual Wield"){
+                            //base is ~1 second
+                            decHitCooldown = '1 - x / 1000';
+                        }
+                        if(type == "Two-Hand"){
+                            //base is ~7/6 seconds
+                            decHitCooldown = '7/6 - x / 1500';
+                        }
+                        if(type == "Rapier"){
+                            //base is ~7/12 seconds
+                            decHitCooldown = '7/12 - 39 * x / 54000';
+                        }
+                        if(type == "Dagger"){
+                            //base is ~5/12 seconds
+                            decHitCooldown = '5/12 - x / 6000';
+                        }
+                        return decHitCooldown;
+                    }
+                    if(i == '4'){
+                        let decJumpCooldown;
+                        //base is ~1 second
+                        decJumpCooldown = '1';
+                        decJumpCooldown += '- x / 1000';
+                        return decJumpCooldown;
+                    }
+                }
             }
             else if(enter == "Luck"){
                 luck = Number(d1);
@@ -1006,6 +1169,27 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     incMultiHit = luck / 50;
                     output =  incMultiHit;
                 }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let incCriticalChance;
+                        //base is 15%
+                        incCriticalChance = '15';
+                        incCriticalChance += '+x / 100';
+                        return incCriticalChance;
+                    }
+                    if(i == '1'){
+                        let incDropChance;
+                        //item not obtained and max luck -> 2x drop chance for said item
+                        incDropChance = 'x / 100';
+                        return incDropChance;
+                    }
+                    if(i == '2'){
+                        let incMultiHit;
+                        //reminder that max % is 15% when both str and luck are maxed
+                        incMultiHit = 'x / 50';
+                        return incMultiHit;
+                    }
+                }
             }
             else if(enter == "Strength"){
                 strength = Number(d1);
@@ -1026,35 +1210,85 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     incMultiHit = strength / 50;
                     output =  incMultiHit;
                 }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let incDmg;
+                        incDmg = 'x * '+baseDmg+' / 250';
+                        return incDmg;
+                    }
+                    if(i == '1'){
+                        let incStamina;
+                        incStamina = 'x / 10';
+                        return incStamina;
+                    }
+                    if(i == '2'){
+                        let incMultiHit;
+                        //reminder that max % is 15% when both str and luck are maxed
+                        incMultiHit = 'x / 50';
+                        return incMultiHit;
+                    }
+                }
             }
             else if(enter == "Defense"){
                 defense = Number(d1);
                 totalDef = Number(d2);
-                let damageReduced;
-                damageReduced = defense / 100;
-                damageReduced += 5;
-                damageReduced *= totalDef;
-                output =  damageReduced;
+                if(i == 0){
+                    let damageReduced;
+                    damageReduced = defense / 100;
+                    damageReduced += 5;
+                    damageReduced *= totalDef;
+                    output =  damageReduced;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let damageReduced;
+                        damageReduced = 'x / 100';
+                        damageReduced += '+5';
+                        damageReduced += '*'+totalDef;
+                        return damageReduced;
+                    }
+                }
             }
             else if(enter == "Smithing Experience"){
                 smithingSK = Number(d1);
                 type = d2;
-                //estimations
-                let smithingExperience;
-                if(type == "Normal"){
-                    smithingExperience = 1.2524 * smithingSK - 0.415796;
+                if(i == 0){
+                    //estimations
+                    let smithingExperience;
+                    if(type == "Normal"){
+                        smithingExperience = 1.2524 * smithingSK - 0.415796;
+                    }
+                    if(type == "Boost"){
+                        smithingExperience = 1.24867 * smithingSK + 2.81122;
+                    }
+                    if(type == "Game-pass"){
+                        smithingExperience = 1.24867 * smithingSK + 2.81122;
+                    }
+                    if(type == "Boost w/ Game-pass"){
+                        //not done
+                    }
+                    smithingExperience = Math.round(smithingExperience);
+                    output =  smithingExperience;
                 }
-                if(type == "Boost"){
-                    smithingExperience = 1.24867 * smithingSK + 2.81122;
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        //estimations
+                        let smithingExperience;
+                        if(type == "Normal"){
+                            smithingExperience = '1.2524 * x - 0.415796';
+                        }
+                        if(type == "Boost"){
+                            smithingExperience = '1.24867 * x + 2.81122';
+                        }
+                        if(type == "Game-pass"){
+                            smithingExperience = '1.24867 * x + 2.81122';
+                        }
+                        if(type == "Boost w/ Game-pass"){
+                            //not done
+                        }
+                        return smithingExperience;
+                    }
                 }
-                if(type == "Game-pass"){
-                    smithingExperience = 1.24867 * smithingSK + 2.81122;
-                }
-                if(type == "Boost w/ Game-pass"){
-                
-                }
-                smithingExperience = Math.round(smithingExperience);
-                output =  smithingExperience;
             }
         }
         else if(parent == "Weapon and Gear Data"){
@@ -1063,73 +1297,145 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 weaponSK = Number(d1);
                 type = d2;
                 legType = d3;
-                
-                //estimations
-                let weaponDamage;
-                if(legType == "Normal"){
-                    if(type == "One-Hand"){
-                        weaponDamage = 1053.85 * Math.pow(weaponSK, -28.6);
-                        weaponDamage += 0.629964 * Math.pow(weaponSK, 1.37402);
-                        weaponDamage += 0.07308 * weaponSK;
-                        weaponDamage += -1.8146 * Math.pow(10, 7) * Math.pow(weaponSK, -2.63841) * Math.sin(-3.14165 * Math.pow(weaponSK, -0.000128815));
+                if(i == 0){
+                    //estimations
+                    let weaponDamage;
+                    if(legType == "Normal"){
+                        if(type == "One-Hand"){
+                            weaponDamage = 1053.85 * Math.pow(weaponSK, -28.6);
+                            weaponDamage += 0.629964 * Math.pow(weaponSK, 1.37402);
+                            weaponDamage += 0.07308 * weaponSK;
+                            weaponDamage += -1.8146 * Math.pow(10, 7) * Math.pow(weaponSK, -2.63841) * Math.sin(-3.14165 * Math.pow(weaponSK, -0.000128815));
+                        }
+                        if(type == "Two-Hand"){
+                            weaponDamage = 0.987388 * Math.pow(weaponSK, 1.36874);
+                            weaponDamage += -1.08924 * Math.pow(weaponSK, 0.230083);
+                            weaponDamage += 3.82497;
+                        }
+                        if(type == "Rapier"){
+                            weaponDamage = 0.605588 * Math.pow(weaponSK, 1.36133);
+                            weaponDamage += -0.429357 * Math.pow(weaponSK, 0.624546);
+                            weaponDamage += 2.766;
+                        }
+                        if(type == "Dagger"){
+                            weaponDamage = 21.4516 * Math.pow(weaponSK, -1.14518);
+                            weaponDamage += 0.511652 * Math.pow(weaponSK, 1.37416);
+                            weaponDamage += 0.057236 * weaponSK;
+                            weaponDamage += -23.5568 * Math.pow(weaponSK, -1.81666) * Math.sin(2.16489 * Math.pow(weaponSK, 0.731571));
+                        }
                     }
-                    if(type == "Two-Hand"){
-                        weaponDamage = 0.987388 * Math.pow(weaponSK, 1.36874);
-                        weaponDamage += -1.08924 * Math.pow(weaponSK, 0.230083);
-                        weaponDamage += 3.82497;
-                    }
-                    if(type == "Rapier"){
-                        weaponDamage = 0.605588 * Math.pow(weaponSK, 1.36133);
-                        weaponDamage += -0.429357 * Math.pow(weaponSK, 0.624546);
-                        weaponDamage += 2.766;
-                    }
-                    if(type == "Dagger"){
-                        weaponDamage = 21.4516 * Math.pow(weaponSK, -1.14518);
-                        weaponDamage += 0.511652 * Math.pow(weaponSK, 1.37416);
-                        weaponDamage += 0.057236 * weaponSK;
-                        weaponDamage += -23.5568 * Math.pow(weaponSK, -1.81666) * Math.sin(2.16489 * Math.pow(weaponSK, 0.731571));
+                    output =  weaponDamage;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        //estimations
+                        let weaponDamage;
+                        if(legType == "Normal"){
+                            if(type == "One-Hand"){
+                                weaponDamage = '1053.85 * Math.pow(x, -28.6)';
+                                weaponDamage += '+0.629964 * Math.pow(x, 1.37402)';
+                                weaponDamage += '+0.07308 * x';
+                                weaponDamage += '-1.8146 * Math.pow(10, 7) * Math.pow(x, -2.63841) * Math.sin(-3.14165 * Math.pow(x, -0.000128815))';
+                            }
+                            if(type == "Two-Hand"){
+                                weaponDamage = '0.987388 * Math.pow(x, 1.36874)';
+                                weaponDamage += '-1.08924 * Math.pow(x, 0.230083)';
+                                weaponDamage += '+3.82497';
+                            }
+                            if(type == "Rapier"){
+                                weaponDamage = '0.605588 * Math.pow(x, 1.36133)';
+                                weaponDamage += '-0.429357 * Math.pow(x, 0.624546)';
+                                weaponDamage += '+2.766';
+                            }
+                            if(type == "Dagger"){
+                                weaponDamage = '21.4516 * Math.pow(x, -1.14518)';
+                                weaponDamage += '+0.511652 * Math.pow(x, 1.37416)';
+                                weaponDamage += '+0.057236 * x';
+                                weaponDamage += '-23.5568 * Math.pow(x, -1.81666) * Math.sin(2.16489 * Math.pow(x, 0.731571))';
+                            }
+                        }
+                        return weaponDamage;
                     }
                 }
-                output =  weaponDamage;
             }
             else if(enter == "Weapon Worth"){
                 weaponSK = Number(d1);
-                //estimations
-                let weaponWorth;
-                weaponWorth = 289.008 * Math.pow(weaponSK, 1.00062) - 19.1322;
-                output = weaponWorth;
+                if(i == 0){
+                    //estimations
+                    let weaponWorth;
+                    weaponWorth = 289.008 * Math.pow(weaponSK, 1.00062) - 19.1322;
+                    output = weaponWorth;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                    //estimations
+                    let weaponWorth;
+                    weaponWorth = '289.008 * Math.pow(x, 1.00062) - 19.1322';
+                    return weaponWorth;
+                }
+                }
             }
             else if(enter == "Skill Damage"){
                 weaponDmg = Number(d1);
                 skillNumber = Number(d2);
                 type = d3;
                 user = String(d4) == 'true';
-                
-                //estimations
-                let skillDamage;
-                if(user){
-                    if(type == "Dagger"){
-                        //checked
-                        if(skillNumber == 6){
-                            skillDamage = Math.round(3.5485 * weaponDmg);
+                if(i == 0){
+                    //estimations
+                    let skillDamage;
+                    if(user){
+                        if(type == "Dagger"){
+                            //checked
+                            if(skillNumber == 6){
+                                skillDamage = Math.round(3.5485 * weaponDmg);
+                            }
+                            if(skillNumber == 7){
+                                skillDamage = Math.floor(3.7485 * weaponDmg);
+                            }
+                            //assumed, first 3 seem to be different, with the last 4 following
+                            //the below formula
+                            else{
+                                skillDamage = Math.round((2.3485 + 0.2 * skillNumber) * weaponDmg);
+                            }
                         }
-                        if(skillNumber == 7){
-                            skillDamage = Math.floor(3.7485 * weaponDmg);
-                        }
-                        //assumed, first 3 seem to be different, with the last 4 following
-                        //the below formula, I will manually confirm once this is done
                         else{
-                            skillDamage = Math.round((2.3485 + 0.2 * skillNumber) * weaponDmg);
+                            skillDamage = 0;
                         }
                     }
                     else{
                         skillDamage = 0;
                     }
+                    output = skillDamage;
                 }
-                else{
-                    skillDamage = 0;
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        //estimations
+                        let skillDamage;
+                        if(user){
+                            if(type == "Dagger"){
+                                //checked
+                                if(skillNumber == 6){
+                                    skillDamage = 'Math.round(3.5485 * x)';
+                                }
+                                if(skillNumber == 7){
+                                    skillDamage = 'Math.floor(3.7485 * x)';
+                                }
+                                //assumed, first 3 seem to be different, with the last 4 following
+                                //the below formula
+                                else{
+                                    skillDamage = 'Math.round((2.3485 + 0.2 * '+skillNumber+') * x)';
+                                }
+                            }
+                            else{
+                                skillDamage = '0';
+                            }
+                        }
+                        else{
+                            skillDamage = '0';
+                        }
+                        return skillDamage;
+                    }
                 }
-                output = skillDamage;
             }
             else if(enter == "Gear Dexterity"){
                 gearLevel = Number(d1);
@@ -1145,16 +1451,15 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                         armorDex += 7.20016 * Math.pow(gearLevel, -0.939635) * Math.sin(0.079352 * gearLevel);
                     }
                     if(type == "Badge"){
-                        console.log(type);
                         armorDex = 0.457371 * Math.pow(gearLevel, 1.45233);
                         armorDex += 5.08398 * Math.pow(gearLevel, 1.0922);
                         armorDex += -4.68986 * gearLevel + 4.16089;
                     }
                     if(type == "Game-pass"){
-                    
+                        //not done
                     }
                     if(type == "Legendary"){
-                    
+                        //not done
                     }
                     output = armorDex;
                 }
@@ -1168,15 +1473,59 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                         headwearDex += 4.7701 * Math.pow(10, -9) * Math.pow(gearLevel, 3.71974) * Math.sin(0.20283 * gearLevel);
                     }
                     if(type == "Badge"){
-                    
+                        //not done
                     }
                     if(type == "Game-pass"){
-                    
+                        //not done
                     }
                     if(type == "Legendary"){
-                    
+                        //not done
                     }
                     output = headwearDex;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        //estimations
+                        let armorDex;
+                        if(type == "Normal"){
+                            armorDex = '1.31732 * Math.pow(x, -500)';
+                            armorDex += '+1.49258 * Math.pow(x, 1.33823)';
+                            armorDex += '-0.380652 * x';
+                            armorDex += '+7.20016 * Math.pow(x, -0.939635) * Math.sin(0.079352 * x)';
+                        }
+                        if(type == "Badge"){
+                            armorDex = '0.457371 * Math.pow(x, 1.45233)';
+                            armorDex += '+5.08398 * Math.pow(x, 1.0922)';
+                            armorDex += '-4.68986 * x + 4.16089';
+                        }
+                        if(type == "Game-pass"){
+                            //not done
+                        }
+                        if(type == "Legendary"){
+                            //not done
+                        }
+                        return armorDex;
+                    }
+                    if(i == '1'){
+                        //estimation
+                        let headwearDex;
+                        if(type == "Normal"){
+                            headwearDex = '0.556583 * Math.pow(x, 1.32396)';
+                            headwearDex += '+0.422066 * Math.pow(x, 0.171806)';
+                            headwearDex += '-0.244749 * x';
+                            headwearDex += '+4.7701 * Math.pow(10, -9) * Math.pow(x, 3.71974) * Math.sin(0.20283 * x)';
+                        }
+                        if(type == "Badge"){
+                            //not done
+                        }
+                        if(type == "Game-pass"){
+                            //not done
+                        }
+                        if(type == "Legendary"){
+                            //not done
+                        }
+                        return headwearDex;
+                    }
                 }
             }
             else if(enter == "Gear Defense"){
@@ -1197,10 +1546,10 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                         armorDef += 0.51296 * Math.pow(gearLevel, -0.424603) * Math.sin(0.121605 * gearLevel);
                     }
                     if(type == "Game-pass"){
-                    
+                        //not done
                     }
                     if(type == "Legendary"){
-                    
+                        //not done
                     }
                     output = armorDef;
                 }
@@ -1213,75 +1562,192 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                         shieldDefense += 2.26883;
                     }
                     if(type == "Badge"){
-                    
+                        //not done
                     }
                     if(type == "Game-pass"){
-                    
+                        //not done
                     }
                     if(type == "Legendary"){
-                    
+                        //not done
                     }
                     output = shieldDefense;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        //estimations
+                        let armorDef;
+                        if(type == "Normal"){
+                            armorDef = '-0.123213 * Math.pow(x, 1.02241)';
+                            armorDef += '+0.29208 * Math.pow(x, 1.32682)';
+                            armorDef += '+0.517196';
+                        }
+                        if(type == "Badge"){
+                            armorDef = '0.615838 * Math.pow(x, -0.343928)';
+                            armorDef += '+0.226188 * Math.pow(x, 1.36863)';
+                            armorDef += '+0.0898362 * x';
+                            armorDef += '+0.51296 * Math.pow(x, -0.424603) * Math.sin(0.121605 * x)';
+                        }
+                        if(type == "Game-pass"){
+                            //not done
+                        }
+                        if(type == "Legendary"){
+                            //not done
+                        }
+                        return armorDef;
+                    }
+                    if(i == '1'){
+                        //estimation
+                        let shieldDefense;
+                        if(type == "Normal"){
+                            shieldDefense = '0.156019 * Math.pow(x, 1.34907)';
+                            shieldDefense += '-1.81904 * Math.pow(x, 0.0925967)';
+                            shieldDefense += '+2.26883';
+                        }
+                        if(type == "Badge"){
+                            //not done
+                        }
+                        if(type == "Game-pass"){
+                            //not done
+                        }
+                        if(type == "Legendary"){
+                            //not done
+                        }
+                        return shieldDefense;
+                    }
                 }
             }
             else if(enter == "Gear Worth"){
                 gearLevel = Number(d1);
                 type = d2;
-                //estimations
-                let gearWorth;
-                if(type == "Armor"){
-                    gearWorth = 480 * gearLevel;
+                if(i == 0){
+                    //estimations
+                    let gearWorth;
+                    if(type == "Armor"){
+                        gearWorth = 480 * gearLevel;
+                    }
+                    else if(type == "Shield"){
+                        gearWorth = 380 * gearLevel;
+                    }
+                    else if(type == "Headwear"){
+                        gearWorth = 260 * gearLevel;
+                    }
+                    output = gearWorth;
                 }
-                else if(type == "Shield"){
-                    gearWorth = 380 * gearLevel;
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        //estimations
+                        let gearWorth;
+                        if(type == "Armor"){
+                            gearWorth = '480 * x';
+                        }
+                        else if(type == "Shield"){
+                            gearWorth = '380 * x';
+                        }
+                        else if(type == "Headwear"){
+                            gearWorth = '260 * x';
+                        }
+                        return gearWorth;
+                    }
                 }
-                else if(type == "Headwear"){
-                    gearWorth = 260 * gearLevel;
-                }
-                output = gearWorth;
             }
         }
         else if(parent == "Mob Data"){
             //Mob/Boss Data
             if(enter == "Health"){
                 mobLevel = Number(d1);
-                //estimation
-                let mobHealth;
-                mobHealth = Math.round(((-4/3)*mobLevel + 20.6013 * Math.pow(mobLevel, 1.36611) + 19.4195) / 10) * 10;
-                output = mobHealth;
+                if(i == 0){
+                    //estimation
+                    let mobHealth;
+                    mobHealth = Math.round(((-4/3)*mobLevel + 20.6013 * Math.pow(mobLevel, 1.36611) + 19.4195) / 10) * 10;
+                    output = mobHealth;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        //estimation
+                        let mobHealth;
+                        mobHealth = 'Math.round(((-4/3)*x + 20.6013 * Math.pow(x, 1.36611) + 19.4195) / 10) * 10';
+                        return mobHealth;
+                    }
+                }
             }
             else if(enter == "Experience"){
                 mobLevel = Number(d1);
-                let mobExperience;
-                mobExperience = Math.floor(2.5 * mobLevel + 10 * Math.floor(mobLevel / 10));
-                output = mobExperience;
+                if(i == 0){
+                    let mobExperience;
+                    mobExperience = Math.floor(2.5 * mobLevel + 10 * Math.floor(mobLevel / 10));
+                    output = mobExperience;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let mobExperience;
+                        mobExperience = 'Math.floor(2.5 * x + 10 * Math.floor(x / 10))';
+                        return mobExperience;
+                    }
+                }
             }
             else if(enter == "Col"){
                 mobLevel = Number(d1);
-                let mobCol;
-                mobCol = 5 * mobLevel;
-                output = mobCol;
+                if(i == 0){
+                    let mobCol;
+                    mobCol = 5 * mobLevel;
+                    output = mobCol;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let mobCol;
+                        mobCol = '5 * x';
+                        return mobCol;
+                    }
+                }
             }
         }
         else if(parent == "Boss Data"){
             if(enter == "Health"){
                 bossLevel = Number(d1);
-                //estimation
-                let bossHealth;
-                bossHealth = Math.round((503.152 * Math.pow(bossLevel, 1.36891) + 7660.28) / 1000) * 1000;
-                output = bossHealth;
+                if(i == 0){
+                    //estimation
+                    let bossHealth;
+                    bossHealth = Math.round((503.152 * Math.pow(bossLevel, 1.36891) + 7660.28) / 1000) * 1000;
+                    output = bossHealth;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        //estimation
+                        let bossHealth;
+                        bossHealth = 'Math.round((503.152 * Math.pow(x, 1.36891) + 7660.28) / 1000) * 1000';
+                        return bossHealth;
+                    }
+                }
             }
             else if(enter == "Experience"){
                 bossLevel = Number(d1);
-                let bossExperience;
-                bossExperience = 180 * bossLevel;
-                output = bossExperience;
+                if(i == 0){
+                    let bossExperience;
+                    bossExperience = 180 * bossLevel;
+                    output = bossExperience;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let bossExperience;
+                        bossExperience = '180 * x';
+                        return bossExperience;
+                    }
+                }
             }
             else if(enter == "Col"){
                 bossLevel = Number(d1);
-                let bossCol;
-                bossCol = 24 * bossLevel;
-                output = bossCol;
+                if(i == 0){
+                    let bossCol;
+                    bossCol = 24 * bossLevel;
+                    output = bossCol;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let bossCol;
+                        bossCol = '24 * x';
+                        output = bossCol;
+                    }
+                }
             }
         }
         
@@ -1304,7 +1770,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
         }
         return output;
 }
-//not currently in use, resets all formula values
+//Resets formula variables, not currently implemented, fr dont know if it is needed
 function resetVar(){
     level = 0;
     totalDex = 0;
@@ -1326,18 +1792,81 @@ function resetVar(){
     
     mobLevel = 0;
     bossLevel = 0;
+
 }
 
-function createGraph(){
+function createGraph(calcStr, visStr){
+    //console.log(document.getElementsByClassName('myPlot').attributes);
+    let exp = formulaToes(parentG,enterG,data1G,data2G,data3G,data4G,''+0);
+
     let myCanvas = document.getElementById('canv');
+    const dpr = 2*window.devicePixelRatio;
+    const rect = myCanvas.getBoundingClientRect();
+
+    // Generate values
+    const xValues = [];
+    const yValues = [];
+    for (let x = 1; x <= 1000; x += 1) {
+        xValues.push(x);
+        yValues.push(eval(exp));
+    }
+
+    // Display using Plotly
+    const data = [{x:xValues, y:yValues, mode:"lines"}];
+    var layout = {
+        title: calcStr+' vs '+visStr,
+        xaxis: {
+            title: ''+calcStr,
+            titlefont: {
+            family: 'Arial, sans-serif',
+            size: 18,
+            color: 'lightgrey'
+            },
+            showticklabels: true,
+            tickangle: 'auto',
+            tickfont: {
+            family: 'Old Standard TT, serif',
+            size: 14,
+            color: 'black'
+            },
+            exponentformat: 'k',
+            showexponent: 'all'
+        },
+        yaxis: {
+            title: ''+visStr,
+            titlefont: {
+            family: 'Arial, sans-serif',
+            size: 18,
+            color: 'lightgrey'
+            },
+            showticklabels: true,
+            tickangle: 45,
+            tickfont: {
+            family: 'Old Standard TT, serif',
+            size: 14,
+            color: 'black'
+            },
+            exponentformat: 'k',
+            showexponent: 'all'
+        },
+        autosize: true,
+        width: dpr*rect.width,
+        height: 3*height,
+        };
+    Plotly.newPlot("myPlot", data, layout, {modeBarButtonsToRemove: ['toImage','select2d','lasso2d','resetScale2d','zoom2d','toggleSpikelines'], scrollZoom: true, displaylogo: false, responsive: true});
+
+    return;
+
+    //Halt so that unnecessary processing does not take place
+
+    
     const ctx = myCanvas.getContext("2d", { alpha: true });
     myCanvas.hidden = false;
 
     //Note: The following is code found and adjusted from 
     //https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas
     // Get the DPR and size of the canvas
-    const dpr = 2*window.devicePixelRatio;
-    const rect = myCanvas.getBoundingClientRect();
+    
 
     // Set the "actual" size of the canvas
     myCanvas.width = rect.width * dpr;
@@ -1358,10 +1887,10 @@ function createGraph(){
     }
 
     ctx.beginPath();
-    
+    //the graph needs to be shifted down and to the right
     let padding = width/20;
     let labelPadding = width/20;
-    let gridColor = "#c8c8c8";
+    let gridColor = "#dfdfdf";
     let pointColor = '#000000';
     let lineColor = "#2c66e6";
     let pointWidth = 10;
@@ -1381,11 +1910,14 @@ function createGraph(){
     const xcoords = []; //holds all x coordinates 
     const ycoords = []; //holds all y coordinates
 
+    
+    let temp = data1G; //saves the previously used data
     //get x and y values to display
     for(let i = 0; i <= MAX; i += step){
         xcoords.push(i);
         ycoords.push(formulaToes(parentG, enterG, i, data2G, data3G, data4G, 0));
     }
+    data1G = temp; //sets the previously used data
     //find ycoord max value
     for(let v = 0; v < MAX/step + 1; v++){
         if(ycoords[v] > ymax){
@@ -1399,6 +1931,10 @@ function createGraph(){
         }
     }
 
+    document.getElementById('graphAlt').innerHTML = 
+        'A graph of the function relating the first input and first output presented.<br>TO DO:<br>';
+    document.getElementById('graphAlt').innerHTML +=
+        'The current point position is (x,y).<br>The minimum value is at point (x1,y1) and the maximum value is at point (x2,y2).<br>';
     //Note: The following is code found and adjusted from 
     //https://stackoverflow.com/questions/8693342/ by Rodrigo Castro
     ctx.clearRect(0,0,500,500);
@@ -1522,6 +2058,6 @@ window.onload = function(){
     setupVisual("visualTitle");
     setupRevert("revertTitle");
     setupCanvas();
-    createGraph();
+    //createGraph();
     console.log("Loaded Buttons");
 }
