@@ -10,7 +10,7 @@
         <!-- Load external CSS styles -->
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
         <link rel="stylesheet" href="styles.css">
-        
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
 
     <body>
@@ -123,6 +123,9 @@
                 <label class='visualTitle' id="vis5">
                     nil</label>
             </form>
+	    <div>
+                <div id="myPlot" style="width:100%;max-width:2000px;height:100%;max-height:500px;text-align: center"></div>
+            </div>
             <canvas class="graphVisual" id="canv">
 
                 <p id='graphAlt'>
@@ -135,7 +138,7 @@
             </canvas>
             <p id='demo'> 
                 Working on visuals, such as graphs and tables for when values have been submitted.<br>
-
+                
             </p>
         </div>
         
