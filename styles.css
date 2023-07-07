@@ -1,9 +1,9 @@
 /* Place your CSS styles in this file */
 body{
-    background-color: rgb(40, 35, 35);
+    background-color: rgb(27, 27, 27);
 }
 h1 {
-    color: rgb(255, 235, 235);
+    color: rgb(222, 222, 222);
     text-align: left;
     font-family: "Source Sans Pro", sans-serif;
     font-size: x-large;
@@ -19,7 +19,7 @@ p{
 }
 
 #barClick{
-    color: rgb(255, 245, 245);
+    color: rgb(244, 244, 244);
     float: right;
     background-color: black;
     font-size: large;
