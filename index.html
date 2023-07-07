@@ -14,10 +14,15 @@
     </head>
 
     <body>
-        
-        <h1>Game Calculator</h1>
+        <div style="background-color: rgb(51, 51, 51);">
+            <h1>Game Calculator
+                <!--<button id="barClick">|||</button> -->
 
-        <div id='starter' hidden>
+            </h1>
+            
+        </div>
+        <p id='introduction'>Hello, the following calculator is ...</p>
+        <div id='starter' style='display:block' hidden>
             
             <button class="gameTitle" id='gam1' type="button"
                 onclick = stopToes(this.id)>
@@ -123,7 +128,7 @@
                 <label class='visualTitle' id="vis5">
                     nil</label>
             </form>
-	    <div>
+            <div style='display:block background-color: black' >
                 <div id="myPlot" style="width:100%;max-width:2000px;height:100%;max-height:500px;text-align: center"></div>
             </div>
             <canvas class="graphVisual" id="canv">
@@ -135,12 +140,14 @@
                     The minimum value is at point (x1,y1) and the maximum value is at point (x2,y2).<br>
 
                 </p>
+            
             </canvas>
             <p id='demo'> 
                 Working on visuals, such as graphs and tables for when values have been submitted.<br>
                 
             </p>
         </div>
+        
         
         
         <!-- Load external JavaScript, always near the end -->
