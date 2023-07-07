@@ -1,37 +1,64 @@
 /* Place your CSS styles in this file */
-
+body{
+    background-color: rgb(40, 35, 35);
+}
 h1 {
-    text-align: center;
+    color: rgb(255, 235, 235);
+    text-align: left;
     font-family: "Source Sans Pro", sans-serif;
-    font-weight: normal;
+    font-size: x-large;
 }
 div{
+    align-items: center;
     text-align: center;
-    display:block;
+    display: grid;
     width:100%;
 }
+p{
+    color: rgb(221, 221, 221);
+}
 
+#barClick{
+    color: rgb(255, 245, 245);
+    float: right;
+    background-color: black;
+    font-size: large;
+    font-weight: bolder;
+    transform: rotate(-90deg);
+}
 .gameTitle{
+    background-color: black;
+    color: rgb(221, 221, 221);
     padding: 10px;
 }
 .categoryTitle{
+    background-color: black;
+    color: rgb(221, 221, 221);
     padding: 10px;
 }
 .subsectionTitle{
+    background-color: black;
+    color: rgb(221, 221, 221);
     padding: 10px;
 }
 .calculatorTitle{
+    background-color: black;
+    color: rgb(221, 221, 221);
     padding: 10px;
 }
 .visualTitle{
+    color: rgb(221, 221, 221);
     padding: 10px;
 }
 .graphVisual{
+    color: rgb(221, 221, 221);
     text-align: center;
     border:1px solid black;
     width: 100%;
     height: 100%;
 }
 .revertTitle{
+    background-color: black;
+    color: rgb(221, 221, 221);
     padding: 10px;
 }
