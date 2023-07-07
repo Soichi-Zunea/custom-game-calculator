@@ -1879,6 +1879,7 @@ function createGraph(calcStr, visStr){
                 size: 14,
                 color: 'white'
             },
+            gridcolor: 'grey',
             exponentformat: 'k',
             showexponent: 'all'
         },
@@ -1896,6 +1897,7 @@ function createGraph(calcStr, visStr){
                 size: 14,
                 color: 'white'
             },
+            gridcolor: 'grey',
             exponentformat: 'k',
             showexponent: 'all'
         },
@@ -1903,8 +1905,8 @@ function createGraph(calcStr, visStr){
         autosize: true,
         width: dpr*rect.width,
         height: 3*height,
-        plot_bgcolor: 'rgb(75, 75, 75)',
-        paper_bgcolor: 'rgb(50, 50, 50)',
+        plot_bgcolor: 'rgb(50, 50, 50)',
+        paper_bgcolor: 'rgb(27, 27, 27)',
         };
     Plotly.newPlot("myPlot", data, layout, {modeBarButtonsToRemove: ['toImage','select2d','lasso2d','resetScale2d','zoom2d','toggleSpikelines'], scrollZoom: true, displaylogo: false, responsive: true});
     return;
@@ -2113,4 +2115,3 @@ window.onload = function(){
     //createGraph();
     console.log("Loaded Buttons");
 }
-
