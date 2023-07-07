@@ -535,6 +535,7 @@ function stopToes(pressedItem){
         }
         document.getElementById('rev1').innerHTML = document.getElementById(pressedItem).innerHTML;
         document.getElementById('rev1').hidden = false;
+        //loads toes to be seen~
         loadToes(pressedItem);
     }
     if(document.getElementById(pressedItem).className == "categoryTitle"){
@@ -587,6 +588,15 @@ function stopToes(pressedItem){
             }
             for(let i = 0; i < document.getElementsByClassName('calculatorTitle').length; i++){
                 document.getElementsByClassName('calculatorTitle')[i].hidden = true;
+                if(document.getElementsByClassName("calculatorTitle")[i].tagName == "INPUT"){
+                    if(i == 2){
+                        document.getElementsByClassName('calculatorTitle')[i].value = '1';
+                    }
+                    else{
+                        document.getElementsByClassName('calculatorTitle')[i].value = '0';
+                    }
+                    document.getElementsByClassName('calculatorTitle')[i].checked = false;
+                }
             }
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
                 document.getElementsByClassName('visualTitle')[i].hidden = true;
@@ -610,6 +620,10 @@ function stopToes(pressedItem){
             }
             for(let i = 0; i < document.getElementsByClassName('calculatorTitle').length; i++){
                 document.getElementsByClassName('calculatorTitle')[i].hidden = true;
+                if(document.getElementsByClassName("calculatorTitle")[i].tagName == "INPUT"){
+                    document.getElementsByClassName('calculatorTitle')[i].value = '0';
+                    document.getElementsByClassName('calculatorTitle')[i].checked = false;
+                }
             }
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
                 document.getElementsByClassName('visualTitle')[i].hidden = true;
@@ -634,6 +648,7 @@ function stopToes(pressedItem){
                 document.getElementsByClassName('calculatorTitle')[i].hidden = true;
                 if(document.getElementsByClassName("calculatorTitle")[i].tagName == "INPUT"){
                     document.getElementsByClassName('calculatorTitle')[i].value = '0';
+                    document.getElementsByClassName('calculatorTitle')[i].checked = false;
                 }
             }
             for(let i = 0; i < document.getElementsByClassName('visualTitle').length; i++){
@@ -645,8 +660,10 @@ function stopToes(pressedItem){
     }
 }
 
+//Loads the data within the toes whenever a toe is pressed
 function loadToes(pressedItem){
     if(document.getElementById(pressedItem).className == "gameTitle"){
+        
         //load categoryToes
         for(let i = 0; i < document.getElementsByClassName("gameTitle").length; i++){
             for(let v = 0; v < document.getElementsByClassName("categoryTitle").length; v++){
@@ -676,10 +693,10 @@ function loadToes(pressedItem){
     if(document.getElementById(pressedItem).className == "subsectionTitle"){
         //load calculator toes, much more crust
         //how about instead of going through all, we can look at revs, if rev1.innerHTML = gam1.innerHTML etc
-        var a = 0; //change to let later
+        var a = 0;
         for(let i = 0; i < document.getElementsByClassName("gameTitle").length; i++){
             //if(document.getElementsByClassName("gameTitle")[i].innerHTML == document.getElementById("rev1").innerHTML){
-                //use, change later, it will take less data
+                //maybe use?
             //}
             for(let v = 0; v < document.getElementsByClassName("categoryTitle").length; v++){
                 for(let s = 0; s < document.getElementsByClassName("subsectionTitle").length; s++){
@@ -687,12 +704,13 @@ function loadToes(pressedItem){
                         for(let t = 0; t < document.getElementsByClassName("calculatorTitle").length; t++){
                             if(pressedItem == document.getElementsByClassName("subsectionTitle")[s].id){
                                 document.getElementsByClassName("calculatorTitle")[t].innerHTML = calculatorString[i][v][s][t]+':';
-                               if(document.getElementsByClassName('calculatorTitle')[t].tagName === "BUTTON"){
+                                if(document.getElementsByClassName('calculatorTitle')[t].tagName === "BUTTON"){
                                     document.getElementsByClassName('calculatorTitle')[t].innerHTML = 'Submit'
-                               }
+                                }
                                 if(calculatorString[i][v][s][t] == '' && document.getElementsByClassName('calculatorTitle')[t].tagName != "BUTTON"){
                                     document.getElementsByClassName("calculatorTitle")[t].hidden = true;
                                 }
+                                //creates options for dropdowns
                                 else if(document.getElementsByClassName("calculatorTitle")[t].tagName === 'SELECT' && document.getElementsByClassName("calculatorTitle")[t].length === 0){
                                     for(let b = 0; b < dropdownString[i][v][s][a].length; b++){
                                         let y = document.createElement("OPTION");
@@ -700,6 +718,33 @@ function loadToes(pressedItem){
                                         document.getElementsByClassName("calculatorTitle")[t].appendChild(y);
                                     }
                                     a++;  
+                                }
+                                //sets data to last used if it was used last
+                                if(parentG == document.getElementById('rev2').innerHTML && enterG == document.getElementById('rev3').innerHTML){
+                                    if(t == 1 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data1G;
+                                    if(t == 2 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data1G;
+                                    if(t == 3 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].checked = data1G;
+                                    if(t == 5 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data2G;
+                                    if(t == 6 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data2G;
+                                    if(t == 7 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].checked = data2G;
+                                    if(t == 9 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data3G;
+                                    if(t == 10 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data3G;
+                                    if(t == 11 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].checked = data3G;
+                                    if(t == 13 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data4G;
+                                    if(t == 14 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data4G;
+                                    if(t == 15 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].checked = data4G;
                                 }
                             }
                         }
@@ -756,11 +801,11 @@ function loadToes(pressedItem){
                                     }
                                     document.getElementsByClassName('visualTitle')[t].innerHTML += 
                                     formulaToes(document.getElementById('rev2').innerHTML,document.getElementById('rev3').innerHTML,c[0],c[1],c[2],c[3],t);
-                                    //console.log(c); //useful for bug testing input
+                                    //console.log(c);
                                     
                                 }
                                 createGraph(calculatorString[i][v][s][0], visualString[i][v][s][0]);
-                                console.log("Submitted values...")
+                                console.log("Submitted values for "+document.getElementsByClassName('subsectionTitle')[s].innerHTML);
                             }
                         }
                     }
@@ -778,7 +823,7 @@ function forceAmountToes(changedItem){
         } 
     }
 }
-//change to Decimal later to incorporate more numbers and higher precision
+
 function formulaToes(parent, enter, d1, d2, d3, d4, i){
     parentG = parent;
     enterG = enter;
@@ -1814,7 +1859,12 @@ function createGraph(calcStr, visStr){
     // Display using Plotly
     const data = [{x:xValues, y:yValues, mode:"lines"}];
     var layout = {
-        title: calcStr+' vs '+visStr,
+        title: {
+            text: calcStr+' vs '+visStr,
+            font: {
+                color: 'white',
+            },
+        },
         xaxis: {
             title: ''+calcStr,
             titlefont: {
@@ -1825,9 +1875,9 @@ function createGraph(calcStr, visStr){
             showticklabels: true,
             tickangle: 'auto',
             tickfont: {
-            family: 'Old Standard TT, serif',
-            size: 14,
-            color: 'black'
+                family: 'Old Standard TT, serif',
+                size: 14,
+                color: 'white'
             },
             exponentformat: 'k',
             showexponent: 'all'
@@ -1842,19 +1892,21 @@ function createGraph(calcStr, visStr){
             showticklabels: true,
             tickangle: 45,
             tickfont: {
-            family: 'Old Standard TT, serif',
-            size: 14,
-            color: 'black'
+                family: 'Old Standard TT, serif',
+                size: 14,
+                color: 'white'
             },
             exponentformat: 'k',
             showexponent: 'all'
         },
+        
         autosize: true,
         width: dpr*rect.width,
         height: 3*height,
+        plot_bgcolor: 'rgb(75, 75, 75)',
+        paper_bgcolor: 'rgb(50, 50, 50)',
         };
     Plotly.newPlot("myPlot", data, layout, {modeBarButtonsToRemove: ['toImage','select2d','lasso2d','resetScale2d','zoom2d','toggleSpikelines'], scrollZoom: true, displaylogo: false, responsive: true});
-
     return;
 
     //Halt so that unnecessary processing does not take place
@@ -2061,3 +2113,4 @@ window.onload = function(){
     //createGraph();
     console.log("Loaded Buttons");
 }
+
