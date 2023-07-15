@@ -30,21 +30,28 @@ p{
     background-color: black;
     color: rgb(221, 221, 221);
     padding: 10px;
+    cursor: pointer;
 }
 .categoryTitle{
     background-color: black;
     color: rgb(221, 221, 221);
     padding: 10px;
+    cursor: pointer;
 }
 .subsectionTitle{
     background-color: black;
     color: rgb(221, 221, 221);
     padding: 10px;
+    cursor: pointer;
 }
 .calculatorTitle{
     background-color: black;
     color: rgb(221, 221, 221);
     padding: 10px;
+    border: 2px solid rgb(225,225,225);
+}
+.calculatorTitle button{
+    cursor: pointer;
 }
 .visualTitle{
     color: rgb(221, 221, 221);

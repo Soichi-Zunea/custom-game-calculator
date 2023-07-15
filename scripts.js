@@ -345,7 +345,7 @@ const dropdownString = [
             [//-
             ],
             [//Smithing Experience, Type 
-                ['Normal','Boost','Game-pass'] //,'Boost w/ Game-pass'
+                ['Normal','Boost','Game-pass','Boost w/ Game-pass']
             ],
         ],
         [
@@ -1302,17 +1302,19 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     let smithingExperience;
                     if(type == "Normal"){
                         smithingExperience = 1.2524 * smithingSK - 0.415796;
+                        smithingExperience = Math.round(smithingExperience);
                     }
-                    if(type == "Boost"){
-                        smithingExperience = 1.24867 * smithingSK + 2.81122;
-                    }
-                    if(type == "Game-pass"){
-                        smithingExperience = 1.24867 * smithingSK + 2.81122;
+                    if(type == "Boost" || type == "Game-pass"){
+                        smithingExperience = 1.2524 * smithingSK - 0.415796;
+                        smithingExperience = Math.round(smithingExperience);
+                        smithingExperience += 2.5;
                     }
                     if(type == "Boost w/ Game-pass"){
-                        //not done
+                        smithingExperience = 1.2524 * smithingSK - 0.415796;
+                        smithingExperience = Math.round(smithingExperience);
+                        smithingExperience += 5;
                     }
-                    smithingExperience = Math.round(smithingExperience);
+                    
                     output =  smithingExperience;
                 }
                 if(typeof i === 'string' || i instanceof String){
@@ -1322,14 +1324,11 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                         if(type == "Normal"){
                             smithingExperience = '1.2524 * x - 0.415796';
                         }
-                        if(type == "Boost"){
-                            smithingExperience = '1.24867 * x + 2.81122';
-                        }
-                        if(type == "Game-pass"){
-                            smithingExperience = '1.24867 * x + 2.81122';
+                        if(type == "Boost" || type == "Game-pass"){
+                            smithingExperience = '1.2524 * x - 0.415796 + 2.5';
                         }
                         if(type == "Boost w/ Game-pass"){
-                            //not done
+                            smithingExperience = '1.2524 * x - 0.415796 + 5';
                         }
                         return smithingExperience;
                     }
@@ -1790,7 +1789,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     if(i == '0'){
                         let bossCol;
                         bossCol = '24 * x';
-                        output = bossCol;
+                        return bossCol;
                     }
                 }
             }

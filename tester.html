@@ -1,0 +1,1466 @@
+ <!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.cdnfonts.com/css/chakra-petch" rel="stylesheet">
+        <style>
+            //table {margin: 0 auto;}
+            #childContainer{
+                display:flex;
+                justify-content:center;
+                align-items:center;
+            }
+            input[type=text] {
+                width: 130px;
+                font-family: 'Chakra Petch';
+                font-size: 16px;
+                padding: 12px 20px 12px 10px;
+                border: 1px solid #ddd;
+                margin-bottom: 12px;
+                -webkit-transition: width 0.4s ease-in-out;
+                transition: width 0.4s ease-in-out;
+            }
+            input[type=text]:focus {
+                width: 100%;
+            }
+            #myBtn {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                z-index: 99;
+                font-family: 'Chakra Petch';
+                font-size: 18px;
+                border: none;
+                outline: none;
+                background-color: grey;
+                color: white;
+                cursor: pointer;
+                padding: 15px;
+                border-radius: 4px;
+            }
+            #myBtn:hover {
+                background-color: #555;
+            }
+            
+            table, td {
+                border: 1px solid white;
+                border-collapse: collapse;
+            }
+            th, tr:nth-child(even), tr:nth-child(odd){
+                font-family: 'Chakra Petch';
+                color: white;
+            }
+            @media screen and (max-width: 600px) {
+                #mySelc {
+                    display: none;
+                }
+            }
+            @media not screen and (max-width: 600px) {
+                #mySelc {
+                    display: block;
+                    font-size: 15px;
+                    font-family: 'Chakra Petch';
+                    padding: 5px;
+                    border-radius: 10px;
+                }
+            }
+
+            th {border-style: groove;}
+            tr:nth-child(even) {background-color: rgb(50, 50, 50);}
+            tr:nth-child(odd) {background-color: black;}
+            tr:hover {background-color: #286262;}
+        </style>
+    </head>
+
+    <body style="background-color:black">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." title="Type in a string">
+        <div>
+        <button onclick="selectElementContents(document.getElementById('myTable'))" 
+            id="mySelc" title="Selects text within table">Select table</button>
+        </div>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
+        <div id="parentContainer">
+            <div id="childContainer">
+            <table style="width:90%;" id="myTable">
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>SK</th>
+                    <th>EXP</th>
+                    <th>Items Required</th>
+                </tr>
+                <tr>
+	<td><span style='color:#6fc8d6'>Trout Oil</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/consumables#h'>
+		<img src='images/necessary-icons/consumable'
+		alt='Consumable' width='30px' height='30px'>
+	</a></td>
+	<td>Required 1</td>
+	<td>1</td>
+	<td><span style='color:orange'>5</span> <span style='color:#6fc8d6'>Raw Trout </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Iron Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 1</td>
+	<td>1</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Iron Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Copper Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 3</td>
+	<td>3</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Copper Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Master Steel Sword</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 5</td>
+	<td>6</td>
+	<td><span style='color:orange'>8</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Copper Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Master Steel Greatsword</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 5</td>
+	<td>6</td>
+	<td><span style='color:orange'>15</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Copper Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Noble Rapier</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 5</td>
+	<td>6</td>
+	<td><span style='color:orange'>15</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Copper Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Master Steel Dagger</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 5</td>
+	<td>6</td>
+	<td><span style='color:orange'>15</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Copper Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Master Shield Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/shield#h'>
+		<img src='images/necessary-icons/shield'
+		alt='Shield' width='30px' height='30px'>
+	</a></td>
+	<td>Required 6</td>
+	<td>7</td>
+	<td><span style='color:orange'>4</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Master Shield</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Master Steel Sword Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 6</td>
+	<td>7</td>
+	<td><span style='color:orange'>5</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>4</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Master Steel Sword</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Wolf Hide </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Master Steel Greatsword Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 6</td>
+	<td>7</td>
+	<td><span style='color:orange'>5</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>4</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Master Steel Greatsword</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Wolf Hide </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Noble Rapier Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 6</td>
+	<td>7</td>
+	<td><span style='color:orange'>10</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>4</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Noble Rapier</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Wolf Hide </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Master Steel Dagger Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 6</td>
+	<td>7</td>
+	<td><span style='color:orange'>5</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>4</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Master Steel Dagger</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Wolf Hide </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Corruption Buster</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 6</td>
+	<td>7</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Iron Greatsword</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Corruption Slicer </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Corruption Stinger</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 6</td>
+	<td>7</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Iron Rapier</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Corruption Slicer </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Corruption Carver</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 6</td>
+	<td>7</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Iron Dagger</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Corruption Slicer </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>GrandMaster Shield Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/shield#h'>
+		<img src='images/necessary-icons/shield'
+		alt='Shield' width='30px' height='30px'>
+	</a></td>
+	<td>Required 8</td>
+	<td>10</td>
+	<td><span style='color:orange'>6</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>4</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>7</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>GrandMaster Shield</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>GrandMaster Steel Blade Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 8</td>
+	<td>10</td>
+	<td><span style='color:orange'>6</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>GrandMaster Steel Blade</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>GrandMaster Steel Greatsword Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 8</td>
+	<td>10</td>
+	<td><span style='color:orange'>6</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>7</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>GrandMaster Steel Greatsword</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>GrandMaster Steel Rapier Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 8</td>
+	<td>10</td>
+	<td><span style='color:orange'>6</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>GrandMaster Steel Rapier</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>GrandMaster Steel Dagger Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 8</td>
+	<td>10</td>
+	<td><span style='color:orange'>5</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>GrandMaster Steel Dagger</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Combat Armor Mk II (All Colors)</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/armor#h'>
+		<img src='images/necessary-icons/outfit'
+		alt='Armor' width='30px' height='30px'>
+	</a></td>
+	<td>Required 8</td>
+	<td>10</td>
+	<td><span style='color:orange'>10</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>4</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Colored Combat Armor </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>GrandMaster Shield Mk III</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/shield#h'>
+		<img src='images/necessary-icons/shield'
+		alt='Shield' width='30px' height='30px'>
+	</a></td>
+	<td>Required 10</td>
+	<td>12</td>
+	<td><span style='color:orange'>8</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>8</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>GrandMaster Shield Mk II</span>, <span style='color:orange'>4</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>GrandMaster Steel Blade Mk III</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 10</td>
+	<td>12</td>
+	<td><span style='color:orange'>8</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>8</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>GrandMaster Steel Blade Mk II</span>, <span style='color:orange'>4</span> <span style='color:#6fc8d6'>Boar Hide</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>GrandMaster Steel Greatsword Mk III</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 10</td>
+	<td>12</td>
+	<td><span style='color:orange'>8</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>8</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>GrandMaster Steel Greatsword Mk II</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>GrandMaster Steel Rapier Mk III</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 10</td>
+	<td>12</td>
+	<td><span style='color:orange'>8</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>8</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>GrandMaster Steel Rapier Mk II</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>GrandMaster Steel Dagger Mk III</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 10</td>
+	<td>12</td>
+	<td><span style='color:orange'>8</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>8</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>GrandMaster Steel Dagger Mk II</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Malachite Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 10</td>
+	<td>12</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Malachite Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Corundum Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 12</td>
+	<td>15</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Corundum Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Malachite Blade</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 15</td>
+	<td>18</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Malachite Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Corundum Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Lord Slugs Slime </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Malachite Greatsword</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 15</td>
+	<td>18</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Malachite Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Corundum Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Lord Slugs Slime </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Malachite Rapier</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 15</td>
+	<td>18</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Malachite Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Corundum Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Lord Slugs Slime </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Malachite Dagger</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 15</td>
+	<td>18</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Malachite Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Corundum Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Lord Slugs Slime </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Malachite Shield</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/shield#h'>
+		<img src='images/necessary-icons/shield'
+		alt='Shield' width='30px' height='30px'>
+	</a></td>
+	<td>Required 15</td>
+	<td>18</td>
+	<td><span style='color:orange'>15</span> <span style='color:#6fc8d6'>Malachite Ingot</span>, <span style='color:orange'>8</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Corundum Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Gold Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 20</td>
+	<td>25</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Gold Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Sandstorm Blade</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 25</td>
+	<td>31</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Gold Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Malachite Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Corundum Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Stallords Eye </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Sandstone Buster</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 25</td>
+	<td>31</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Gold Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Malachite Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Corundum Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Stallords Eye </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Sandstorm Rapier</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 25</td>
+	<td>31</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Gold Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Malachite Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Corundum Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Stallords Eye </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Sandstorm Dagger</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 25</td>
+	<td>31</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Gold Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Malachite Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Corundum Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Stallords Eye </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Silver Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 30</td>
+	<td>37</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Silver Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Bourne Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 32</td>
+	<td>40</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Bourne Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Dark Repulser</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 40</td>
+	<td>50</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Xrphans Feather</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Silver Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Bourne Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Permafrost Shield</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/shield#h'>
+		<img src='images/necessary-icons/shield'
+		alt='Shield' width='30px' height='30px'>
+	</a></td>
+	<td>Required 35</td>
+	<td>43</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Xrphans Feather</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Silver Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Bourne Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Permafrost Sword</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 35</td>
+	<td>43</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Xrphans Feather</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Silver Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Bourne Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Permafrost Greatsword</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 35</td>
+	<td>43</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Xrphans Feather</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Silver Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Bourne Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Permafrost Rapier</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 35</td>
+	<td>43</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Xrphans Feather</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Silver Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Bourne Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Permafrost Dagger</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 35</td>
+	<td>43</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Xrphans Feather</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Silver Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Bourne Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Demonite Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 40</td>
+	<td>50</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Demonite </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Demonic Blade</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 45</td>
+	<td>56</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Demonite Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Uakmaroths Horn </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Demonic Greatsword</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 45</td>
+	<td>56</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Demonite Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Uakmaroths Horn </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Demonic Rapier</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 45</td>
+	<td>56</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Demonite Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Uakmaroths Horn </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Demonic Dagger</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 45</td>
+	<td>56</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Demonite Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Wolf Hide</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Uakmaroths Horn </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Mossy Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 50</td>
+	<td>62</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Mossy Stone </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Holy Silver Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 52</td>
+	<td>65</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Silver Ingot</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Angels Dust </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Ancient Mask</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/upper-headwear#h'>
+		<img src='images/necessary-icons/upperheadwear'
+	alt='Upper Headwear' width='30px' height='30px'>
+	</a></td>
+	<td>Required 55</td>
+	<td>68</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Mossy Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Plasma Extract </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Ancient Warrior</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 55</td>
+	<td>68</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Mossy Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Plasma Extract </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Ancient Berserker</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 55</td>
+	<td>68</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Mossy Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Plasma Extract </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Ancient Maiden</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 55</td>
+	<td>68</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Mossy Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Plasma Extract </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Ancient Assassin</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 55</td>
+	<td>68</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Mossy Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Plasma Extract </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Dark Repulser Mk II</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 60</td>
+	<td>75</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Plasma Extract</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Demonite Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Dark Repulser </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Ancient Guardian</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/shield#h'>
+		<img src='images/necessary-icons/shield'
+		alt='Shield' width='30px' height='30px'>
+	</a></td>
+	<td>Required 60</td>
+	<td>75</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Mossy Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Plasma Extract </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Ebony Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 60</td>
+	<td>75</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Ebony Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Reinforced Bone</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 62</td>
+	<td>77</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Bone Meal </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Corroded Crusader</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 65</td>
+	<td>81</td>
+	<td><span style='color:orange'>45</span> <span style='color:#6fc8d6'>Reinforced Bone</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Ebony Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Petrified Skull </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Corroded Berserker</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 65</td>
+	<td>81</td>
+	<td><span style='color:orange'>45</span> <span style='color:#6fc8d6'>Reinforced Bone</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Ebony Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Petrified Skull </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Corroded Piercer</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 65</td>
+	<td>81</td>
+	<td><span style='color:orange'>45</span> <span style='color:#6fc8d6'>Reinforced Bone</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Ebony Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Petrified Skull </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Corroded Shank</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 65</td>
+	<td>81</td>
+	<td><span style='color:orange'>45</span> <span style='color:#6fc8d6'>Reinforced Bone</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Ebony Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Petrified Skull </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Reinforced Coral</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 70</td>
+	<td>87</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Coral </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Poseidons Repulser</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 75</td>
+	<td>94</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Reinforced Coral</span>, <span style='color:orange'>25</span> <span style='color:#6fc8d6'>Sea Jewel</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Scale</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Krakens Beak </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Atlantic Destroyer</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 75</td>
+	<td>94</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Reinforced Coral</span>, <span style='color:orange'>25</span> <span style='color:#6fc8d6'>Sea Jewel</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Scale</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Krakens Beak </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Atlantic Enguarde</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 75</td>
+	<td>94</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Reinforced Coral</span>, <span style='color:orange'>25</span> <span style='color:#6fc8d6'>Sea Jewel</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Scale</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Krakens Beak </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Apocalyptic Bringer</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 75</td>
+	<td>94</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Reinforced Coral</span>, <span style='color:orange'>25</span> <span style='color:#6fc8d6'>Sea Jewel</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Scale</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Krakens Beak </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Dark Repulser Mk III</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 80</td>
+	<td>100</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Krakens Beak</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Reinforced Coral</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Dark Repulser Mk II </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Refined Gem</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 80</td>
+	<td>100</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Gem Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Moons Light</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 85</td>
+	<td>106</td>
+	<td><span style='color:orange'>5</span> <span style='color:#6fc8d6'>Xrphans Feather</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Refined Gem </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Slayers Brew</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 90</td>
+	<td>112</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Lord Slugs Slime</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Stallords Eye</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Uakmaroths Horn </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Blessed Pendant of Light</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/lower-headwear#h'>
+		<img src='images/necessary-icons/lowerheadwear'
+		alt='Upper Headwear' width='30px' height='30px'>
+	</a></td>
+	<td>Required 92</td>
+	<td>115</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Moons Light</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Brew </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Forest Warrior</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 95</td>
+	<td>119</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Moons Light</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Brew </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Forest Buster</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 95</td>
+	<td>119</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Moons Light</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Brew </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Forest Maiden</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 95</td>
+	<td>119</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Moons Light</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Brew </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Forest Assassin</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 95</td>
+	<td>119</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Moons Light</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Brew </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Harrowed Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 100</td>
+	<td>125</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Harrowed Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Impartial Edge</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 105</td>
+	<td>131</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Corrupted Tendrils</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Harrowed Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Kings Crown</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Impurity </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Zweihander</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 105</td>
+	<td>131</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Corrupted Tendrils</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Harrowed Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Kings Crown</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Impurity </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Royal Guard Rapier</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 105</td>
+	<td>131</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Corrupted Tendrils</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Harrowed Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Kings Crown</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Impurity </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Thiefs Blade</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 105</td>
+	<td>131</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Corrupted Tendrils</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Harrowed Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Kings Crown</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Impurity </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Plant Matter Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 110</td>
+	<td>137</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Plant Matter </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Dark Repulser Mk IV</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 110</td>
+	<td>137</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Harrowed Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Plant Matter Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Kings Crown</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Impurity</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Queens Vine</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Oak Wood</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Dark Repulser Mk III </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Floral Rapier</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 115</td>
+	<td>144</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Plant Matter Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Queens Vine</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Oak Wood </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Floral Blade</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 115</td>
+	<td>144</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Plant Matter Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Queens Vine</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Oak Wood </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Floral Dagger</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 115</td>
+	<td>144</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Plant Matter Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Queens Vine</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Oak Wood </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Floral Buster</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 115</td>
+	<td>144</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Plant Matter Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Queens Vine</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Oak Wood </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Slayers Essence</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 118</td>
+	<td>147</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Plasma Extract</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Petrified Skull</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Krakens Beak</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Monks Sash </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Flora</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/lower-headwear#h'>
+		<img src='images/necessary-icons/lowerheadwear'
+		alt='Upper Headwear' width='30px' height='30px'>
+	</a></td>
+	<td>Required 120</td>
+	<td>150</td>
+	<td><span style='color:orange'>4</span> <span style='color:#6fc8d6'>Queens Vine</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Plant Matter Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Essence </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Poseidons Scale</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='Legendary One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 120</td>
+	<td>150</td>
+	<td><span style='color:orange'>15</span> <span style='color:#6fc8d6'>Scale</span>, <span style='color:orange'>25</span> <span style='color:#6fc8d6'>Reinforced Coral</span>, <span style='color:orange'>25</span> <span style='color:#6fc8d6'>Sea Jewel</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Krakens Beak</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Queens Vine </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Twilight Buster</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Legendary Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 120</td>
+	<td>150</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Ebony Ingot</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Kings Crown</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Impurity</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Moons Light </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Hells Slayer</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Legendary Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 120</td>
+	<td>150</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Demonite Ingot</span>, <span style='color:orange'>30</span> <span style='color:#6fc8d6'>Reinforced Bone</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Uakmaroths Horn</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Petrified Skull</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Brew </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Anguish Carver</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+		<img src='images/necessary-icons/dagger'
+		alt='Legendary Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 120</td>
+	<td>150</td>
+	<td><span style='color:orange'>15</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>30</span> <span style='color:#6fc8d6'>Bourne Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Illfangs Tooth</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Stallords Eye</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Monks Sash</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Moons Light </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Dark Energy</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 120</td>
+	<td>150</td>
+	<td><span style='color:orange'>3</span> <span style='color:#6fc8d6'>Dark Matter </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Dark Source</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 122</td>
+	<td>152</td>
+	<td><span style='color:orange'>10</span> <span style='color:#6fc8d6'>Dark Energy </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Blessed Greatsword</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 125</td>
+	<td>156</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Iron Greatsword</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Dark Energy</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Blessed Blade </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Blessed Blade</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 125</td>
+	<td>156</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Blessed Pendant of Light</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Plant Matter Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Dark Energy</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Dark Source</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Akikos Will </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Blessed Rapier</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 125</td>
+	<td>156</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Iron Rapier</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Dark Energy</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Blessed Blade </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Blessed Dagger</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 125</td>
+	<td>156</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Iron Dagger</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Dark Energy</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Blessed Blade </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Heavenly Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 130</td>
+	<td>162</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Heavenly Ore </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Village Key</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 140</td>
+	<td>175</td>
+	<td><span style='color:#6fc8d6'>First Key PieceSecond Key PieceThird Key PieceHave Quests: </span>, <span style='color:orange'>71,</span> <span style='color:orange'>72</span> <span style='color:#6fc8d6'>& </span>, <span style='color:orange'>73</span> <span style='color:#6fc8d6'>Completed. Have Quest K15 Active </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Alloy Smithing Plate</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 150</td>
+	<td>187</td>
+	<td><span style='color:orange'>10</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Malachite Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Corundum Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Gold Ingot</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Silver IngotHave Quest C71 Active </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Crystaline Smithing Plate</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 150</td>
+	<td>187</td>
+	<td><span style='color:orange'>10</span> <span style='color:#6fc8d6'>Scale</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Sea Jewel</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Refined Gem</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Harrowed Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>ImpurityHave Quest C71 CompleteHave Quest C72 Active </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Angelic Smithing Plate</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 150</td>
+	<td>187</td>
+	<td><span style='color:orange'>10</span> <span style='color:#6fc8d6'>Holy Silver Ingot</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Dark Source</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Soul</span>, <span style='color:orange'>10</span> <span style='color:#6fc8d6'>Heavenly Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Poisonous CleaverHave Quest: C71 & C72 CompleteHave Quest C73 Active </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Gigas Spirit</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='Legendary One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 155</td>
+	<td>194</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Alloy Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Crystaline Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Angelic Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Gigas Blessed BranchQuests : C71C72 & C73 Complete </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Gigas Soul</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Legendary Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 155</td>
+	<td>194</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Alloy Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Crystaline Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Angelic Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Gigas Blessed BranchQuests : C71C72 & C73 Complete </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Gigas Lacerator</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Legendary Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 155</td>
+	<td>194</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Alloy Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Crystaline Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Angelic Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Gigas Blessed BranchQuests : C71C72 & C73 Complete </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Gigas Grinder</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+		<img src='images/necessary-icons/dagger'
+		alt='Legendary Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 155</td>
+	<td>194</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Alloy Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Crystaline Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Angelic Smithing Plate</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Gigas Blessed BranchQuests : C71C72 & C73 Complete </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Candy Ingot</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 160</td>
+	<td>200</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Rock Candy </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Candy Bar</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 160</td>
+	<td>200</td>
+	<td><span style='color:orange'>2</span> <span style='color:#6fc8d6'>Sweet Candy </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Pure Candy</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 162</td>
+	<td>202</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Candy Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Candy Bar </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Necromancer Brew</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Material' width='30px' height='30px'>
+	</a></td>
+	<td>Required 165</td>
+	<td>206</td>
+	<td><span style='color:orange'>1</span> <span style='color:#6fc8d6'>Soul</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Heavenly Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Giant Chains</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Captains Tooth </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Butterscotch Blade</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 165</td>
+	<td>206</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Pure Candy</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Heavenly Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Necromancer Brew</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Das Chaos </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Cinnamon Sword</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 165</td>
+	<td>206</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Pure Candy</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Heavenly Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Necromancer Brew</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Der Zerstorer </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Licorice Lancer</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 165</td>
+	<td>206</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Pure Candy</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Heavenly Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Necromancer Brew</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Die Klarheit </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Sour Lemon Stabber</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+	<img src='images/necessary-icons/dagger'
+		alt='Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 165</td>
+	<td>206</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Pure Candy</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Heavenly Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Necromancer Brew</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Die Vergangenheit </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Wafer Shield</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/shield#h'>
+		<img src='images/necessary-icons/shield'
+		alt='Shield' width='30px' height='30px'>
+	</a></td>
+	<td>Required 165</td>
+	<td>206</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Pure Candy</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Heavenly Ingot</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Necromancer Brew</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Divine Guard </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Candy Mask</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/protective-equipments/upper-headwear#h'>
+		<img src='images/necessary-icons/upperheadwear'
+	alt='Upper Headwear' width='30px' height='30px'>
+	</a></td>
+	<td>Required 165</td>
+	<td>206</td>
+	<td><span style='color:orange'>25</span> <span style='color:#6fc8d6'>Pure Candy</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Necromancer Brew</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Graciousness </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Water Elemental Handle</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Weapon Handle' width='30px' height='30px'>
+	</a></td>
+	<td>Required 170</td>
+	<td>212</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Harrowed Ingots</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Plant Matter Ingots</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Heavenly Ingots</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Kings Crowns</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Queens Vines</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Souls</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Impurities</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Oak Wood</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Brew</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Essence</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Dark Sources</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Legendary Cinders</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Doomed Treasures</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Purifications</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Xantherils</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Whales</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Floral Blade</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Blessed Blade</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Hope BladesHoly Blades</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Das Chaos </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Fire Elemental Handle</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Weapon Handle' width='30px' height='30px'>
+	</a></td>
+	<td>Required 170</td>
+	<td>212</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Harrowed Ingots</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Plant Matter Ingots</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Heavenly Ingots</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Kings Crowns</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Queens Vines</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Souls</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Impurities</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Oak Wood</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Brew</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Essence</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Dark Sources</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Legendary Cinders</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Doomed Treasures</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Purifications</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Xantherils</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Whales</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Floral Buster</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Blessed Greatsword</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Hope BustersHoly Busters</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Der Zerstorers </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Air Elemental Handle</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Weapon Handle' width='30px' height='30px'>
+	</a></td>
+	<td>Required 170</td>
+	<td>212</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Harrowed Ingots</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Plant Matter Ingots</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Heavenly Ingots</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Kings Crowns</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Queens Vines</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Souls</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Impurities</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Oak Wood</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Brew</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Essence</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Dark Sources</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Legendary Cinders</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Doomed Treasures</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Purifications</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Xantherils</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Whales</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Floral Rapier</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Blessed Rapier</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Hope RapiersHoly Rapiers</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Die Klarheits </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Earth Elemental Handle</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/list-of-items/materials#h'>
+		<img src='images/necessary-icons/material'
+		alt='Weapon Handle' width='30px' height='30px'>
+	</a></td>
+	<td>Required 170</td>
+	<td>212</td>
+	<td><span style='color:orange'>20</span> <span style='color:#6fc8d6'>Harrowed Ingots</span>, <span style='color:orange'>20</span> <span style='color:#6fc8d6'>Plant Matter Ingots</span>, <span style='color:orange'>15</span> <span style='color:#6fc8d6'>Heavenly Ingots</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Kings Crowns</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Queens Vines</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Souls</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Impurities</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Oak Wood</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Brew</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Slayers Essence</span>, <span style='color:orange'>5</span> <span style='color:#6fc8d6'>Dark Sources</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Legendary Cinders</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Doomed Treasures</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Purifications</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Xantherils</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Whales</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Floral Dagger</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Blessed Dagger</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Hope DaggersHoly Daggers</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Die Vergangenheits </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Divinity</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/one-handed'>
+		<img src='images/necessary-icons/one-handed'
+		alt='Legendary One Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 180</td>
+	<td>225</td>
+	<td><span style='color:orange'>8</span> <span style='color:#6fc8d6'>Slayers Brew</span>, <span style='color:orange'>8</span> <span style='color:#6fc8d6'>Slayers Essence</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Obsidibite</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Moons Light</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Yang Katana</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Poseidons Trident</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>The Green Flame Sword </span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Sandstorm Blade </span>, <span style='color:orange'>40</span> <span style='color:#6fc8d6'>Sea Jewel </span>, <span style='color:orange'>30</span> <span style='color:#6fc8d6'>Reinforced Bone </span>, <span style='color:orange'>40</span> <span style='color:#6fc8d6'>Corundum Ingot </span>, <span style='color:orange'>40</span> <span style='color:#6fc8d6'>Gold Ingot </span>, <span style='color:orange'>25</span> <span style='color:#6fc8d6'>Holy Silver Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Zurandal</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/two-handed#h'>
+		<img src='images/necessary-icons/two-handed'
+		alt='Legendary Two Handed' width='30px' height='30px'>
+	</a></td>
+	<td>Required 180</td>
+	<td>225</td>
+	<td><span style='color:orange'>8</span> <span style='color:#6fc8d6'>Slayers Brew</span>, <span style='color:orange'>8</span> <span style='color:#6fc8d6'>Slayers Essence</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Obsidibite</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Moons Light</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Legendary Malachite Blade</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Yukkis Mourne</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Kamikaze Katana</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Wretched Greatsword</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Atlantic Destroyer</span>, <span style='color:orange'>30</span> <span style='color:#6fc8d6'>Reinforced Coral</span>, <span style='color:orange'>40</span> <span style='color:#6fc8d6'>Copper Ingot</span>, <span style='color:orange'>40</span> <span style='color:#6fc8d6'>Ebony Ingot</span>, <span style='color:orange'>25</span> <span style='color:#6fc8d6'>Refined Gem </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Queens Maiden</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/rapier#h'>
+		<img src='images/necessary-icons/rapier'
+		alt='Legendary Rapier' width='30px' height='30px'>
+	</a></td>
+	<td>Required 180</td>
+	<td>225</td>
+	<td><span style='color:orange'>8</span> <span style='color:#6fc8d6'>Slayers Brew</span>, <span style='color:orange'>8</span> <span style='color:#6fc8d6'>Slayers Essence</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Obsidibite</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Moons Light</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Titans Guard</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Krakens Skin</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Deaths Kiss</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Desert Striker</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Ancient Maiden</span>, <span style='color:orange'>30</span> <span style='color:#6fc8d6'>Mossy Ingot</span>, <span style='color:orange'>40</span> <span style='color:#6fc8d6'>Scale</span>, <span style='color:orange'>40</span> <span style='color:#6fc8d6'>Iron Ingot</span>, <span style='color:orange'>25</span> <span style='color:#6fc8d6'>Silver Ingot </td>
+</tr>
+<tr>
+	<td><span style='color:#6fc8d6'>Katherines Dagger</span></td>
+	<td><a href='https://sites.google.com/view/sbor-cv3-mini-library-testing/home/weapons/dagger#h'>
+		<img src='images/necessary-icons/dagger'
+		alt='Legendary Dagger' width='30px' height='30px'>
+	</a></td>
+	<td>Required 180</td>
+	<td>225</td>
+	<td><span style='color:orange'>8</span> <span style='color:#6fc8d6'>Slayers Brew</span>, <span style='color:orange'>8</span> <span style='color:#6fc8d6'>Slayers Essence</span>, <span style='color:orange'>6</span> <span style='color:#6fc8d6'>Obsidibite</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Moons Light</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Illfangs Shield</span>, <span style='color:orange'>2</span> <span style='color:#6fc8d6'>Pharaoh's Edge</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Tourmaline Edge</span>, <span style='color:orange'>3</span> <span style='color:#6fc8d6'>Molten Thief</span>, <span style='color:orange'>1</span> <span style='color:#6fc8d6'>Apocalyptic Bringer</span>, <span style='color:orange'>30</span> <span style='color:#6fc8d6'>Bourne Ingot</span>, <span style='color:orange'>40</span> <span style='color:#6fc8d6'>Demonite Ingot</span>, <span style='color:orange'>40</span> <span style='color:#6fc8d6'>Gold Ingot</span>, <span style='color:orange'>40</span> <span style='color:#6fc8d6'>Silver Ingot </td>
+</tr>
+            </table>
+            </div>
+        </div>
+        <script>
+            //Search function
+            function myFunction() {
+                var input, filter, table, tr, td0, td1, td2, td3, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td0 = tr[i].getElementsByTagName("td")[0];
+                    td1 = tr[i].getElementsByTagName("td")[1];
+                    td2 = tr[i].getElementsByTagName("td")[2];
+                    td3 = tr[i].getElementsByTagName("td")[3];
+                    if (td0 || td1 || td2 || td3) {
+                        txtValue = td0.textContent+td1.textContent+td2.textContent+td3.textContent
+                            || td0.innerText+td1.innerText+td2.innerText+td3.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+            
+            function selectElementContents(el) {
+                var body = document.body, range, sel;
+                if (document.createRange && window.getSelection) {
+                    range = document.createRange();
+                    sel = window.getSelection();
+                    sel.removeAllRanges();
+                    try {
+                        range.selectNodeContents(el);
+                        sel.addRange(range);
+                    } catch (e) {
+                        range.selectNode(el);
+                        sel.addRange(range);
+                    }
+                } else if (body.createTextRange) {
+                    range = body.createTextRange();
+                    range.moveToElementText(el);
+                    range.select();
+                    //range.setSelectionRange(0, 99999);
+                }
+            }
+
+            // Get the button
+            let mybutton = document.getElementById("myBtn");
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+        <noscript>
+            
+        </noscript>
+    </body>
+</html>
