@@ -48,7 +48,7 @@ p{
     background-color: black;
     color: rgb(221, 221, 221);
     padding: 10px;
-    border: 2px solid rgb(225,225,225);
+    border: 2px inset rgb(156, 156, 156);
 }
 .calculatorTitle button{
     cursor: pointer;
