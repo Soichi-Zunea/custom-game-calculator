@@ -1,11 +1,12 @@
 /* Place your CSS styles in this file */
 body{
     background-color: rgb(27, 27, 27);
+    font-family: 'Chakra Petch';
 }
 h1 {
     color: rgb(222, 222, 222);
     text-align: left;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: 'Chakra Petch';
     font-size: x-large;
 }
 div{
@@ -14,10 +15,15 @@ div{
     display: grid;
     width:100%;
 }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 p{
     color: rgb(221, 221, 221);
+    
 }
-
 #barClick{
     color: rgb(244, 244, 244);
     float: right;
@@ -29,28 +35,52 @@ p{
 .gameTitle{
     background-color: black;
     color: rgb(221, 221, 221);
+    font-family: 'Chakra Petch';
     padding: 10px;
     cursor: pointer;
 }
 .categoryTitle{
     background-color: black;
     color: rgb(221, 221, 221);
+    font-family: 'Chakra Petch';
     padding: 10px;
     cursor: pointer;
 }
 .subsectionTitle{
     background-color: black;
     color: rgb(221, 221, 221);
+    font-family: 'Chakra Petch';
     padding: 10px;
     cursor: pointer;
 }
-.calculatorTitle{
-    background-color: black;
-    color: rgb(221, 221, 221);
-    padding: 10px;
-    border: 2px inset rgb(156, 156, 156);
+
+@media screen and (max-width: 600px) {
+    .calculatorTitle{
+        background-color: black;
+        color: rgb(221, 221, 221);
+        font-family: 'Chakra Petch';
+        padding: 10px;
+        border: 2px inset rgb(156, 156, 156);
+        margin-bottom: 6px;
+
+    }
+    input[type=number] {
+                width: 100px;
+            }
 }
-.calculatorTitle button{
+@media not screen and (max-width: 600px) {
+    .calculatorTitle{
+        background-color: black;
+        color: rgb(221, 221, 221);
+        font-family: 'Chakra Petch';
+        padding: 10px;
+        border: 2px inset rgb(156, 156, 156);
+        margin-bottom: 6px;
+
+    }
+}
+
+#cal7{
     cursor: pointer;
 }
 .visualTitle{
@@ -67,5 +97,7 @@ p{
 .revertTitle{
     background-color: black;
     color: rgb(221, 221, 221);
+    font-family: 'Chakra Petch';
     padding: 10px;
+    cursor: pointer;
 }

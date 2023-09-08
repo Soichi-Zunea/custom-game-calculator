@@ -5,6 +5,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="TBNRpugz2">
+        <meta name="description" content="Calculator holder for SBO:R">
         <title>Game Calculator</title>
 
         <!-- Load external CSS styles -->
@@ -15,11 +17,7 @@
 
     <body>
         <div style="background-color: rgb(51, 51, 51);">
-            <h1>Game Calculator
-                <!--<button id="barClick">|||</button> -->
-
-            </h1>
-            
+            <h1>Game Calculator</h1>
         </div>
         <p id='introduction' style="text-align:center">
             The following calculator intends to introduce various
@@ -29,114 +27,146 @@
         <div id='starter' style='display:block' hidden>
             
             <button class="gameTitle" id='gam1' type="button"
-                onclick = stopToes(this.id)>
+                onclick = stopToes(this.id) hidden>
                 nil
             </button>
                 
             <button class="revertTitle" id='rev1' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="revertTitle" id='rev2' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="revertTitle" id='rev3' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
 
             <p></p>
 
             <button class="categoryTitle" id='cat1' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="categoryTitle" id='cat2' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="categoryTitle" id='cat3' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="categoryTitle" id='cat4' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
 
             <button class="subsectionTitle" id='sub1' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="subsectionTitle" id='sub2' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="subsectionTitle" id='sub3' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="subsectionTitle" id='sub4' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="subsectionTitle" id='sub5' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="subsectionTitle" id='sub6' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="subsectionTitle" id='sub7' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="subsectionTitle" id='sub8' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="subsectionTitle" id='sub9' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
             <button class="subsectionTitle" id='sub10' type="button"
-            onclick = stopToes(this.id)>nil</button>
+            onclick = stopToes(this.id) hidden>nil</button>
 
             <!--Calculator Toes, inputs-->
             <form>
-                <label class="calculatorTitle" id='label1'>
+                <label class="calculatorTitle" id='label1' hidden>
                     nil</label>
                 <input class="calculatorTitle" id='textField1' type="number" min='0' value='1'
-                onchange="forceAmountToes(this.id)">
+                onchange="forceAmountToes(this.id)" hidden>
                     </input>
-                <select class='calculatorTitle' name="dropdown1" id="dropdown1">
+                <select class='calculatorTitle' name="dropdown1" id="dropdown1" 
+                onchange="forceAmountToes(this.id)" hidden>
                 </select>
-                <input class="calculatorTitle" id='checkbox1' type="checkbox">
+                <input class="calculatorTitle" id='checkbox1' type="checkbox" 
+                onchange="forceAmountToes(this.id)" hidden>
                     </input>
                 <p></p>
-                <label class="calculatorTitle" id='label2'>
+                <label class="calculatorTitle" id='label2' hidden>
                     nil</label>
                 <input class="calculatorTitle" id='textField2' type="number" min='0' value='0'
-                onchange="forceAmountToes(this.id)">
+                onchange="forceAmountToes(this.id)" hidden>
                     </input>
-                <select class='calculatorTitle' name="dropdown2" id="dropdown2">
+                <select class='calculatorTitle' name="dropdown2" id="dropdown2" 
+                onchange="forceAmountToes(this.id)" hidden>
                 </select>
-                <input class="calculatorTitle" id='checkbox2' type="checkbox">
+                <input class="calculatorTitle" id='checkbox2' type="checkbox" 
+                onchange="forceAmountToes(this.id)" hidden>
                     </input>
                 <p></p>
-                <label class="calculatorTitle" id='label3'>
+                <label class="calculatorTitle" id='label3' hidden>
                     nil</label>
                 <input class="calculatorTitle" id='textField3' type="number" min='0' value='0'
-                onchange="forceAmountToes(this.id)">
+                onchange="forceAmountToes(this.id)" hidden>
                     </input>
                 
-                <select class='calculatorTitle' name="dropdown3" id="dropdown3">
-                </select>
+                <select class='calculatorTitle' name="dropdown3" id="dropdown3" 
+                onchange="forceAmountToes(this.id)" hidden>
+                    </select>
                
-                <input class="calculatorTitle" id='checkbox3' type="checkbox">
+                <input class="calculatorTitle" id='checkbox3' type="checkbox" 
+                onchange="forceAmountToes(this.id)" hidden>
                     </input>
                 <p></p>
-                <label class="calculatorTitle" id='label4'>
+                <label class="calculatorTitle" id='label4' hidden>
                     nil</label>
                 <input class="calculatorTitle" id='textField4' type="number" min='0' value='0'
-                onchange="forceAmountToes(this.id)">
+                onchange="forceAmountToes(this.id)" hidden>
                     </input>
-                <select class='calculatorTitle' name="dropdown4" id="dropdown4">
-                </select>
-                <input class="calculatorTitle" id='checkbox4' type="checkbox">
+                <select class='calculatorTitle' name="dropdown4" id="dropdown4" 
+                onchange="forceAmountToes(this.id)" hidden>
+                    </select>
+                <input class="calculatorTitle" id='checkbox4' type="checkbox" 
+                onchange="forceAmountToes(this.id)" hidden>
+                    </input>        
+                <p></p>
+                <label class="calculatorTitle" id='label5' hidden>
+                    nil</label>
+                <input class="calculatorTitle" id='textField5' type="number" min='0' value='0'
+                onchange="forceAmountToes(this.id)" hidden>
+                    </input>
+                <select class='calculatorTitle' name="dropdown5" id="dropdown5" 
+                onchange="forceAmountToes(this.id)" hidden>
+                    </select>
+                <input class="calculatorTitle" id='checkbox5' type="checkbox" 
+                onchange="forceAmountToes(this.id)" hidden>
+                    </input>        
+                <p></p>
+                <label class="calculatorTitle" id='label6' hidden>
+                    nil</label>
+                <input class="calculatorTitle" id='textField6' type="number" min='0' value='0'
+                onchange="forceAmountToes(this.id)" hidden>
+                    </input>
+                <select class='calculatorTitle' name="dropdown6" id="dropdown6" 
+                onchange="forceAmountToes(this.id)" hidden>
+                    </select>
+                <input class="calculatorTitle" id='checkbox6' type="checkbox" 
+                onchange="forceAmountToes(this.id)" hidden>
                     </input>        
                 <p></p>
                 <button class="calculatorTitle" id='cal7' type="button"
-                onclick = stopToes(this.id)>
+                onclick = stopToes(this.id) hidden>
                 </button>
 
                 <!--Visual Labels and hopefully graphs later-->
-                <label class='visualTitle' id="vis1">
+                <label class='visualTitle' id="vis1" hidden>
                     nil</label>
-                <label class='visualTitle' id="vis2">
+                <label class='visualTitle' id="vis2" hidden>
                     nil</label>
-                <label class='visualTitle' id="vis3">
+                <label class='visualTitle' id="vis3" hidden>
                     nil</label>
-                <label class='visualTitle' id="vis4">
+                <label class='visualTitle' id="vis4" hidden>
                     nil</label>
-                <label class='visualTitle' id="vis5">
+                <label class='visualTitle' id="vis5" hidden>
                     nil</label>
             </form>
             
             <div style='display:block background-color: black' >
                 <div id="myPlot" style="width:100%;max-width:2000px;height:100%;max-height:500px;text-align: center"></div>
             </div>
-            <canvas class="graphVisual" id="canv">
+            <canvas class="graphVisual" id="canv" hidden>
 
                 <p id='graphAlt'>
                     A graph of the function relating the first input and first output presented.<br>
@@ -148,13 +178,62 @@
             
             </canvas>
             <hr></hr>
-            <p id='demo'> 
-                The following sections of the calculator are estimations: Player Health, 
-                Player Agility Reduced Hit Cooldown, Player Agility Reduced Jump Cooldown, 
-		Player Smithing Experience (all variants), Weapon SK Damage, Weapon Worth, 
-		Skill Damage, Gear Dexterity, Gear Defense, Mob Health, Mob Damage, Boss Health, 
-		and Boss Damage.<br>Please do note that although these are estimations, they are 
-		still reasonably close.
+            <p style="padding: 10px;"></p>
+            <p> 
+                <b>The following sections of the calculator are estimations:</b>
+                <ul style="color:lightgrey">
+                    <li>Player Health</li>
+                    <li>Player Agility Reduced Hit Cooldown</li>
+                    <li>Player Agility Reduced Jump Cooldown</li>
+                    <li>Player Smithing Experience (all variants)</li>
+                    <li>Weapon SK Damage</li>
+                    <li>Weapon Worth</li>
+                    <li>Skill Damage</li>
+                    <li>Gear Dexterity</li>
+                    <li>Gear Defense</li>
+                    <li>Material Worth</li>
+                    <li>Consumable Worth</li>
+                    <li>Mob Health</li>
+                    <li>Mob Damage</li>
+                    <li>Boss Health</li>
+                    <li>Boss Damage</li>
+                    <li>Status Duration</li>
+                    <li>Status Boss Duration</li>
+                </ul>
+            </p>
+            <hr></hr>
+            <p style="padding: 10px;"></p>
+            <p style="color:red">
+                <b>Please do note that although these are estimations, they are 
+		        still reasonably close.</b>  <br>Except for Mob Damage and 
+                Boss Damage, which are outrageously off, so don't use them.  
+                Base Status Durations are in between (4 and 6) or (6 and 8), so the 
+                calculator will be off 1 or less seconds.<br>
+            </p>
+            <p>
+                <b>Incomplete Sections:</b>
+                <ul style="color:lightgrey">
+                    <li>Weapon Damage Type (Badge/Game-pass/Legendary)</li>
+                    <li>Skill Damage Skill Number (1-7 for the below)</li>
+                    <li>Skill Damage Weapon Type (One-Hand/Two-Hand/Rapier)</li>
+                    <li>Skill Damage User (Unchecked)</li>
+                    <li>Gear Dexterity Type (Badge[Headwear]/Game-pass/Legendary)</li>
+                    <li>Gear Defense Type (Badge[Shield]/Game-pass/Legendary)</li>
+                    <li>Material Worth</li>
+                    <li>Consumable Worth</li>
+            </p>
+            <p>
+                <b>Current Plans:</b> Add a navigation menu.  Add means to input a file containing all desired
+                inputs for a specific calculator, with the outputs being output onto the screen.  
+                Add the inputs to the output screen. (Currently working on)
+
+            </p>
+            <p>
+                <b>Bugs/Temp-patches:</b> Touchscreen graphs will sometimes clear when you are scrolling past.
+                the patch involved resetting the graph to the origin and redisplaying it. FIXED!  
+                Hitting enter would allow Mobile users to submit non-numbers within number inputs.  
+                FIXED!
+
             </p>
         </div>
         
@@ -163,12 +242,16 @@
         <!-- Load external JavaScript, always near the end -->
         <script src="scripts.js"></script>
         <noscript>
-            You have JavaScript disabled.<br>
-            I am also planning to make it available for y'all as well, I don't know how 
-            JavaScript disabled functions, whether it stops all scripts from running or only JS.<br>
-            Literal noob, bing-chat says only JS but I still gotta test with PHP (also total noob at).
-            <!-- Create a visual for the JS disabled bros -->
-            
+            <p>
+                You have JavaScript disabled.<br>
+                I am also planning to make it available for y'all as well, I don't know how 
+                JavaScript disabled functions, whether it stops all scripts from running or only JS.<br>
+                Literal noob, bing-chat says only JS but I still gotta test with PHP (also total noob at).
+                <!-- Create a visual for the JS disabled bros -->
+                Alright, this is merely a test.  I shall add a list of functions OR will add a 
+                PDF viewer/download containing a PDF of a Word Document I created.  Although not as 
+                reasonable and user friendly, this should still prove useful.
+            </p>
         </noscript>
     </body>
 

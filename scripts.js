@@ -1,46 +1,50 @@
 /* Place your JavaScript in this file */
 
 //CHANGE THESE CONSTANTS
-const gameString = ["Sword Blox Online:Rebirth"] //create more gamebuttons if more games
+const gameString = ["Sword Blox Online: Rebirth"] //create more gamebuttons if more games
 const categoryString = [
     //add more if games are added
-    [//Sword Blox Online:Rebirth
-        "Player Data" ,"Weapon and Gear Data",
-        "Mob Data","Boss Data"
+    [//Sword_Blox_Online_Rebirth
+        "Player Data" ,"Inventory Data",
+        "Entity Data","Status Data"
     ]
 ]
 const subsectionString = [
     //add more if games are added
-    [//Sword Blox Online:Rebirth
+    [//Sword_Blox_Online_Rebirth
         [//Player Data
             'Health','Experience','Stamina','Damage','Strength',
             'Agility','Defense','Vitality','Luck','Smithing Experience'
         ],
-        [//Weapon and Gear Data
+        [//Inventory Data
             'Weapon Damage','Weapon Worth','Skill Damage','Gear Dexterity',
-            'Gear Defense','Gear Worth','','','',''
+            'Gear Defense','Gear Worth','Material Worth','Consumable Worth','',''
         ],
-        [//Mob Data
-            'Health','Experience','Col','','','','','','',''
+        [//Entity Data
+            'Mob Health','Mob Experience','Mob Damage','Mob Col',
+            'Boss Health','Boss Experience','Boss Damage','Boss Col','',''
         ],
-        [//Boss Data
-            'Health','Experience','Col','','','','','','',''
+        [//Status Data
+            'Damage','Duration','','','','','','','',''
         ]
     ]
 ]
 const calculatorString = [
     //add more if games are added
-    [//Sword Blox Online:Rebirth
+    //Format: 'Label' 'TextField' 'Dropdown' 'CheckBox'
+    [//Sword_Blox_Online_Rebirth
         [//Player Data
             [//Health
                 'Player Level',' ','','',
                 'Total Dexterity',' ','','',
                 'Player Vitality',' ','','',
                 '','','','',
+                '','','','',
                 '','','',''
             ],
             [//Experience
                 'Player Level',' ','','',
+                '','','','',
                 '','','','',
                 '','','','',
                 '','','','',
@@ -51,6 +55,7 @@ const calculatorString = [
                 'Player Agility',' ','','',
                 'Player Strength',' ','','',
                 'Player Vitality',' ','','',
+                '','','','',
                 '','','',''
             ],
             [//Damage
@@ -58,11 +63,13 @@ const calculatorString = [
                 'Player Strength',' ','','',
                 'Weapon Type','',' ','',
                 '','','','',
+                '','','','',
                 '','','',''
             ],
             [//Strength
                 'Player Strength',' ','','',
                 'Base Damage',' ','','',
+                '','','','',
                 '','','','',
                 '','','','',
                 '','','',''
@@ -72,11 +79,13 @@ const calculatorString = [
                 'Weapon Type','',' ','',
                 '','','','',
                 '','','','',
+                '','','','',
                 '','','',''
             ],
             [//Defense
                 'Player Defense',' ','','',
                 'Total Gear Defense',' ','','',
+                '','','','',
                 '','','','',
                 '','','','',
                 '','','',''
@@ -86,10 +95,12 @@ const calculatorString = [
                 'Total Gear Dexterity',' ','','',
                 '','','','',
                 '','','','',
+                '','','','',
                 '','','',''
             ],
             [//Luck
                 'Player Luck',' ','','',
+                '','','','',
                 '','','','',
                 '','','','',
                 '','','','',
@@ -100,19 +111,22 @@ const calculatorString = [
                 'Type','',' ','',
                 '','','','',
                 '','','','',
+                '','','','',
                 '','','',''
             ],
         ],
-        [//Weapon and Gear Data
+        [//Inventory Data
             [//Weapon Damage
                 'Weapon SK',' ','','',
                 'Weapon Type','',' ','',
                 'Type','',' ','',
                 '','','','',
+                '','','','',
                 '','','',''
             ],
             [//Weapon Worth
                 'Weapon SK',' ','','',
+                '','','','',
                 '','','','',
                 '','','','',
                 '','','','',
@@ -123,11 +137,13 @@ const calculatorString = [
                 'Skill Number','',' ','',
                 'Weapon Type','',' ','',
                 'User','','',' ',
+                '','','','',
                 '','','',''
             ],
             [//Gear Dexterity
                 'Gear Level',' ','','',
                 'Gear Type','',' ','',
+                '','','','',
                 '','','','',
                 '','','','',
                 '','','',''
@@ -137,6 +153,7 @@ const calculatorString = [
                 'Gear Type','',' ','',
                 '','','','',
                 '','','','',
+                '','','','',
                 '','','',''
             ],
             [//Gear Worth
@@ -144,6 +161,23 @@ const calculatorString = [
                 'Gear Type','',' ','',
                 '','','','',
                 '','','','',
+                '','','','',
+                '','','',''
+            ],
+            [//Material Worth
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','',''
+            ],
+            [//Consumable Worth
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
                 '','','',''
             ],
             [//blank
@@ -151,23 +185,11 @@ const calculatorString = [
                 '','','','',
                 '','','','',
                 '','','','',
-                '','','',''
-            ],
-            [//blank
-                '','','','',
-                '','','','',
-                '','','','',
                 '','','','',
                 '','','',''
             ],
             [//blank
                 '','','','',
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','',''
-            ],
-            [//blank
                 '','','','',
                 '','','','',
                 '','','','',
@@ -175,26 +197,69 @@ const calculatorString = [
                 '','','',''
             ],
         ],
-        [//Mob Data
-            [//Health
+        [//Entity Data
+            [//Mob Health
+                'Mob Level',' ','','',
+                'Night','','',' ',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','',''
+            ],
+            [//Mob Experience
                 'Mob Level',' ','','',
                 '','','','',
                 '','','','',
                 '','','','',
+                '','','','',
                 '','','',''
             ],
-            [//Experience
+            [//Mob Damage
                 'Mob Level',' ','','',
                 '','','','',
                 '','','','',
                 '','','','',
+                '','','','',
                 '','','',''
             ],
-            [//Col
+            [//Mob Col
                 'Mob Level',' ','','',
                 '','','','',
                 '','','','',
                 '','','','',
+                '','','','',
+                '','','',''
+            ],
+            [//Boss Health
+                'Boss Level',' ','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','',''
+            ],
+            [//Boss Experience
+                'Boss Level',' ','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','',''
+            ],
+            [//Boss Damage
+                'Boss Level',' ','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','',''
+            ],
+            [//Boss Col
+                'Boss Level',' ','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
                 '','','',''
             ],
             [//blank
@@ -202,44 +267,11 @@ const calculatorString = [
                 '','','','',
                 '','','','',
                 '','','','',
-                '','','',''
-            ],
-            [//blank
-                '','','','',
-                '','','','',
-                '','','','',
                 '','','','',
                 '','','',''
             ],
             [//blank
                 '','','','',
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','',''
-            ],
-            [//blank
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','',''
-            ],
-            [//blank
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','',''
-            ],
-            [//blank
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','',''
-            ],
-            [//blank
                 '','','','',
                 '','','','',
                 '','','','',
@@ -247,36 +279,25 @@ const calculatorString = [
                 '','','',''
             ],
         ],
-        [//Boss Data
-            [//Health
-                'Mob Level',' ','','',
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','',''
+        [//Status Data
+            [//Damage
+                'Player Health',' ','','',
+                'Player Vitality',' ','','',
+                'Effect','',' ','',
+                'Armor','','',' ',
+                'Upper Headwear','','',' ',
+                'Lower Headwear','','',' '
             ],
-            [//Experience
-                'Mob Level',' ','','',
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','',''
-            ],
-            [//Col
-                'Mob Level',' ','','',
-                '','','','',
-                '','','','',
-                '','','','',
+            [//Duration
+                'Player Vitality',' ','','',
+                'Effect','',' ','',
+                'Armor','','',' ',
+                'Upper Headwear','','',' ',
+                'Lower Headwear','','',' ',
                 '','','',''
             ],
             [//blank
                 '','','','',
-                '','','','',
-                '','','','',
-                '','','','',
-                '','','',''
-            ],
-            [//blank
                 '','','','',
                 '','','','',
                 '','','','',
@@ -288,12 +309,6 @@ const calculatorString = [
                 '','','','',
                 '','','','',
                 '','','','',
-                '','','',''
-            ],
-            [//blank
-                '','','','',
-                '','','','',
-                '','','','',
                 '','','','',
                 '','','',''
             ],
@@ -302,6 +317,15 @@ const calculatorString = [
                 '','','','',
                 '','','','',
                 '','','','',
+                '','','','',
+                '','','',''
+            ],
+            [//blank
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
                 '','','',''
             ],
             [//blank
@@ -309,9 +333,27 @@ const calculatorString = [
                 '','','','',
                 '','','','',
                 '','','','',
+                '','','','',
                 '','','',''
             ],
             [//blank
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','',''
+            ],
+            [//blank
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','','',
+                '','','',''
+            ],
+            [//blank
+                '','','','',
                 '','','','',
                 '','','','',
                 '','','','',
@@ -322,7 +364,7 @@ const calculatorString = [
     ]
 ]
 const dropdownString = [
-    [//Sword Blox Online:Rebirth
+    [//Sword Blocking Toes
         [//Player Data
             [//Health
             ],
@@ -344,35 +386,60 @@ const dropdownString = [
             ],
             [//-
             ],
-            [//Smithing Experience, Type 
+            [//Smithing Experience, Type
                 ['Normal','Boost','Game-pass','Boost w/ Game-pass']
             ],
         ],
-        [
+        [//Inventory Data
             [//Weapon Damage
                 ['One-Hand','Two-Hand','Rapier','Dagger'],
-                ['Normal'] //,'Badge','Game-pass','Legendary',
+                ['Normal','Badge','Game-pass','Legendary',]
             ],
             [],
             [//Skill Damage
-                ['4','5','6','7'], //'1','2','3', before
-                ['Dagger'], //'One-Hand','Two-Hand','Rapier', before
+                ['1','2','3','4','5','6','7'],
+                ['One-Hand','Two-Hand','Rapier','Dagger']
             ],
             [//Gear Dexterity
-                ['Normal','Badge'] //,'Game-pass','Legendary'
+                ['Normal','Badge','Game-pass','Legendary']
             ],
             [//Gear Defense
-                ['Normal','Badge'] //,'Game-pass','Legendary'
+                ['Normal','Badge','Game-pass','Legendary']
             ],
             [//Gear Worth
                 ['Armor','Shield','Headwear']
             ],
-
+            [],
+            [],
+            [],
+            [],
+        ],
+        [//Entity Data
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        [
+            [
+                ['Poison','Bleed','Freeze','Burn',
+                'Paralysis','Decay','Light']
+            ],
+            [
+                ['Poison','Bleed','Freeze','Burn',
+                'Paralysis','Decay','Light']
+            ],
         ]
     ]
 ]
 const visualString = [
-    [//Sword Blox Online:Rebirth
+    [//Sword Blocking Toes
         [//Player Data
             [//Health
                 'Player Base Health','Player Health','','',''
@@ -381,7 +448,7 @@ const visualString = [
                 'Player Experience','Percentage Saved','Player Experience Saved','',''
             ],
             [
-                'Player Base Stamina','Player Stamina','','',''
+                'Player Base Stamina','Player Stamina','Stamina Regeneration','',''
             ],
             [
                 'Player Damage','Player Critical Damage','','',''
@@ -401,7 +468,7 @@ const visualString = [
             ],
             ['Player Smithing Experience','','','','']
         ],
-        [
+        [//Inventory Data
             ['Weapon Damage','','','',''],
             ['Weapon Worth','','','',''],
             ['Skill Damage','','','',''],
@@ -412,27 +479,27 @@ const visualString = [
                 'Armor Defense','Shield Defense','','',''
             ],
             ['Gear Worth','','','',''],
-            ['','','','',''],
-            ['','','','',''],
+            ['Material Worth','','','',''],
+            ['Consumable Worth','','','',''],
             ['','','','',''],
             ['','','','','']
         ],
-        [
-            ['Mob Health','','','',''],
+        [//Entity Data
+            ['Mob Health','Nighttime Health','','',''],
             ['Mob Experience','','','',''],
+            ['Minimum Mob Damage','Maximum Mob Damage','','',''],
             ['Mob Col','','','',''],
-            ['','','','',''],
-            ['','','','',''],
-            ['','','','',''],
-            ['','','','',''],
-            ['','','','',''],
-            ['','','','',''],
-            ['','','','','']
-        ],
-        [
             ['Boss Health','','','',''],
             ['Boss Experience','','','',''],
+            ['Boss Damage','','','',''],
             ['Boss Col','','','',''],
+            ['','','','',''],
+            ['','','','','']
+        ],
+        [//Status Data
+            ['Damage','','','',''],
+            ['Duration','Boss Duration','','',''],
+            ['','','','',''],
             ['','','','',''],
             ['','','','',''],
             ['','','','',''],
@@ -464,7 +531,13 @@ let user;
 let gearLevel;
     
 let mobLevel;
+let night;
 let bossLevel;
+
+let statusEffect;
+let armor;
+let uppHead;
+let lowHead;
 
 //LETS FOR VISUALS
 let parentG;
@@ -473,7 +546,14 @@ let data1G;
 let data2G;
 let data3G;
 let data4G;
+let data5G;
+let data6G;
 let iG;
+
+//PLOTLY POSITION HOLDERS
+var currentXRange = 0;
+var currentYRange = 1000;
+var changedValue = false;
 
 //CONSTANTS FOR CANVAS
 const width = document.getElementById('canv').width;
@@ -482,47 +562,47 @@ let tries;
 tries = 0;
 
 //Sets up the buttons
-function setupGame(gameName){
-    document.getElementById("starter").hidden = false;
-    for(let i = 0; i < document.getElementsByClassName(gameName).length; i++){
-        document.getElementsByClassName(gameName)[i].innerHTML = gameString[i];
-        document.getElementsByClassName(gameName)[i].hidden = false;
+    function setupGame(gameName){
+        document.getElementById("starter").hidden = false;
+        for(let i = 0; i < document.getElementsByClassName(gameName).length; i++){
+            document.getElementsByClassName(gameName)[i].innerHTML = gameString[i];
+            document.getElementsByClassName(gameName)[i].hidden = false;
+        }
     }
-}
-function setupCategory(categoryName){
-    for(let i = 0; i < document.getElementsByClassName(categoryName).length; i++){  
-        document.getElementsByClassName(categoryName)[i].innerHTML = "Category-Title-"+i;
-        document.getElementsByClassName(categoryName)[i].hidden = true;
+    function setupCategory(categoryName){
+        for(let i = 0; i < document.getElementsByClassName(categoryName).length; i++){  
+            document.getElementsByClassName(categoryName)[i].innerHTML = "Category-Title-"+i;
+            document.getElementsByClassName(categoryName)[i].hidden = true;
+        }
     }
-}
-function setupSubsection(subsectionName){
-    for(let i = 0; i < document.getElementsByClassName(subsectionName).length; i++){  
-        document.getElementsByClassName(subsectionName)[i].innerHTML = "Subsection-Title-"+i;
-        document.getElementsByClassName(subsectionName)[i].hidden = true;
+    function setupSubsection(subsectionName){
+        for(let i = 0; i < document.getElementsByClassName(subsectionName).length; i++){  
+            document.getElementsByClassName(subsectionName)[i].innerHTML = "Subsection-Title-"+i;
+            document.getElementsByClassName(subsectionName)[i].hidden = true;
+        }
     }
-}
-function setupCalculator(calculatorTitle){
-    for(let i = 0; i < document.getElementsByClassName(calculatorTitle).length; i++){  
-        document.getElementsByClassName(calculatorTitle)[i].innerHTML = "Calculator-Title-"+i;
-        document.getElementsByClassName(calculatorTitle)[i].hidden = true;
+    function setupCalculator(calculatorTitle){
+        for(let i = 0; i < document.getElementsByClassName(calculatorTitle).length; i++){  
+            document.getElementsByClassName(calculatorTitle)[i].innerHTML = "Calculator-Title-"+i;
+            document.getElementsByClassName(calculatorTitle)[i].hidden = true;
+        }
     }
-}
-function setupVisual(visualTitle){
-    for(let i = 0; i < document.getElementsByClassName(visualTitle).length; i++){
-        document.getElementsByClassName(visualTitle)[i].innerHTML = "Visual-Title-"+i;
-        document.getElementsByClassName(visualTitle)[i].hidden = true;
+    function setupVisual(visualTitle){
+        for(let i = 0; i < document.getElementsByClassName(visualTitle).length; i++){
+            document.getElementsByClassName(visualTitle)[i].innerHTML = "Visual-Title-"+i;
+            document.getElementsByClassName(visualTitle)[i].hidden = true;
+        }
     }
-}
-function setupRevert(revertTitle){
-    for(let i = 0; i < document.getElementsByClassName(revertTitle).length; i++){  
-        document.getElementsByClassName(revertTitle)[i].innerHTML = '';
-        document.getElementsByClassName(revertTitle)[i].hidden = true;
+    function setupRevert(revertTitle){
+        for(let i = 0; i < document.getElementsByClassName(revertTitle).length; i++){  
+            document.getElementsByClassName(revertTitle)[i].innerHTML = '';
+            document.getElementsByClassName(revertTitle)[i].hidden = true;
+        }
     }
-}
-function setupCanvas(){
-    let myCanvas = document.getElementById('canv');
-    myCanvas.hidden = true;    
-}
+    function setupCanvas(){
+        let myCanvas = document.getElementById('canv');
+        myCanvas.hidden = true;    
+    }
 
 //Stops the toes from being pressed, opening up more toes
 function stopToes(pressedItem){
@@ -565,7 +645,10 @@ function stopToes(pressedItem){
             document.getElementsByClassName("visualTitle")[i].hidden = false;
         }
         for(let i = 0; i < document.getElementsByClassName("calculatorTitle").length; i++){
-            document.getElementsByClassName("calculatorTitle")[i].hidden = true;
+            //change to allow for calculatorTitle elements to stay visible, but disabled
+            //also hide submit button
+            document.getElementById('cal7').hidden = true;
+            //document.getElementsByClassName("calculatorTitle")[i].hidden = true;
         }
         loadToes(pressedItem);
     }
@@ -745,6 +828,19 @@ function loadToes(pressedItem){
                                         document.getElementsByClassName('calculatorTitle')[t].value = data4G;
                                     if(t == 15 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
                                         document.getElementsByClassName('calculatorTitle')[t].checked = data4G;
+                                    if(t == 17 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data5G;
+                                    if(t == 18 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data5G;
+                                    if(t == 19 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].checked = data5G;
+                                    if(t == 21 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data6G;
+                                    if(t == 22 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].value = data6G;
+                                    if(t == 23 && document.getElementsByClassName('calculatorTitle')[t].hidden == false)
+                                        document.getElementsByClassName('calculatorTitle')[t].checked = data6G;
+                                    
                                 }
                             }
                         }
@@ -755,7 +851,7 @@ function loadToes(pressedItem){
         a=0;
     }
     if(document.getElementById(pressedItem).className == "calculatorTitle"){
-        //load visual titles and graphs/tables(later)
+        //load visual titles and graphs/tables (done :D)
         for(let i = 0; i < document.getElementsByClassName('gameTitle').length; i++){
             if(document.getElementsByClassName("gameTitle")[i].innerHTML == document.getElementById("rev1").innerHTML){
                 for(let v = 0; v < document.getElementsByClassName('categoryTitle').length; v++){
@@ -765,6 +861,7 @@ function loadToes(pressedItem){
                                 const c = [];
                                 let noPass;
                                 noPass = false;
+                                //temp stores values within a list to be used for calculations
                                 for(let b = 0; b < document.getElementsByClassName('calculatorTitle').length; b++){
                                     if(document.getElementsByClassName('calculatorTitle')[b].tagName == "INPUT" && document.getElementsByClassName('calculatorTitle')[b].type == "checkbox"){
                                         if(calculatorString[i][v][s][b] == ' '){
@@ -790,17 +887,18 @@ function loadToes(pressedItem){
                                     }
                                     noPass = false;
                                 }
+                                //displays visualTitles
                                 for(let t = 0; t < document.getElementsByClassName('visualTitle').length; t++){
                                     document.getElementsByClassName('visualTitle')[t].innerHTML = visualString[i][v][s][t]+": ";
                                     
                                     if(visualString[i][v][s][t] == ''){
                                         document.getElementsByClassName('visualTitle')[t].hidden = true;
                                     }
-                                    while(c.length < 4){
+                                    while(c.length < 6){
                                         c.push('0')
                                     }
                                     document.getElementsByClassName('visualTitle')[t].innerHTML += 
-                                    formulaToes(document.getElementById('rev2').innerHTML,document.getElementById('rev3').innerHTML,c[0],c[1],c[2],c[3],t);
+                                    formulaToes(document.getElementById('rev2').innerHTML,document.getElementById('rev3').innerHTML,c[0],c[1],c[2],c[3],c[4],c[5],t);
                                     //console.log(c);
                                     
                                 }
@@ -815,6 +913,7 @@ function loadToes(pressedItem){
     }
 }
 
+//Makes a toe conform to the fungus, also allows the fungus to grow
 function forceAmountToes(changedItem){
     //confirm input type
     if(document.getElementById(changedItem).tagName === "INPUT"){
@@ -822,15 +921,132 @@ function forceAmountToes(changedItem){
             document.getElementById(changedItem).value = 0;
         } 
     }
+    if(document.getElementById('cal7').hidden == true){
+
+        let i;
+            //find a game name that matches rev1
+            for(let a = 0; a < document.getElementsByClassName('gameTitle').length; a++){
+                if(document.getElementById('rev1').innerHTML == document.getElementsByClassName('gameTitle')[a].innerHTML){
+                    i = a;
+                }
+            }
+            let v;
+            //find a category name that matches rev2
+            for(let a = 0; a < document.getElementsByClassName('categoryTitle').length; a++){
+                if(document.getElementsByClassName('categoryTitle')[a].innerHTML == document.getElementById('rev2').innerHTML){
+                    v = a;
+                }
+            }
+            let s;
+            //find a subsection name that matches rev3
+            for(let a = 0; a < document.getElementsByClassName('subsectionTitle').length; a++){
+                if(document.getElementsByClassName('subsectionTitle')[a].innerHTML == document.getElementById('rev3').innerHTML){
+                    s = a;
+                }
+            }
+
+        let changedData;
+        let indexOfCal;
+        let noPass;
+        noPass = false;
+
+        //is this even needed???
+        for(let b = 0; b < document.getElementsByClassName('calculatorTitle').length; b++){
+            if(document.getElementById(changedItem) == document.getElementsByClassName('calculatorTitle')[b]){
+                indexOfCal = b;
+                    if(document.getElementsByClassName('calculatorTitle')[b].tagName == "INPUT" && document.getElementsByClassName('calculatorTitle')[b].type == "checkbox"){
+                        if(calculatorString[i][v][s][b] == ' '){
+                            changedData = document.getElementsByClassName('calculatorTitle')[b].checked;
+                            noPass = true;
+                        }
+                    }
+                    if(document.getElementsByClassName('calculatorTitle')[b].tagName == "SELECT"){
+                        if(document.getElementsByClassName('calculatorTitle')[b].value != undefined && document.getElementsByClassName('calculatorTitle')[b].value != ''){
+                            changedData = document.getElementsByClassName('calculatorTitle')[b].value;
+                            noPass = true;
+                        }
+                    }
+                                        
+                    if(noPass == false){
+                        if(document.getElementsByClassName('calculatorTitle')[b].tagName == "INPUT" && document.getElementsByClassName('calculatorTitle')[b].type == "number" ){
+                            //check for undefined and stop those toes from attacking the queen yaaaaa
+                            //remember to set all values to 0 or 1 when clicking rev1/2/3
+                            if(document.getElementsByClassName('calculatorTitle')[b].value != undefined && calculatorString[i][v][s][b] == ' '){
+                                changedData = document.getElementsByClassName('calculatorTitle')[b].value;
+                            }
+                        }
+                    }
+                    noPass = false;
+                
+            }
+        }
+        //sets data to last used if it was used last
+        if(parentG == document.getElementById('rev2').innerHTML && enterG == document.getElementById('rev3').innerHTML){
+            if(indexOfCal == 1 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data1G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 2 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data1G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 3 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data1G = document.getElementsByClassName('calculatorTitle')[indexOfCal].checked;
+            if(indexOfCal == 5 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data2G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 6 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data2G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 7 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data2G = document.getElementsByClassName('calculatorTitle')[indexOfCal].checked;
+            if(indexOfCal == 9 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data3G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 10 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data3G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 11 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data3G = document.getElementsByClassName('calculatorTitle')[indexOfCal].checked;
+            if(indexOfCal == 13 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data4G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 14 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data4G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 15 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data4G = document.getElementsByClassName('calculatorTitle')[indexOfCal].checked;
+            if(indexOfCal == 17 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data5G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 18 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data5G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 19 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data5G = document.getElementsByClassName('calculatorTitle')[indexOfCal].checked;
+            if(indexOfCal == 21 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data6G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 22 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data6G = document.getElementsByClassName('calculatorTitle')[indexOfCal].value;
+            if(indexOfCal == 23 && document.getElementsByClassName('calculatorTitle')[indexOfCal].hidden == false)
+                data6G = document.getElementsByClassName('calculatorTitle')[indexOfCal].checked;
+        }
+        for(let t = 0; t < document.getElementsByClassName('visualTitle').length; t++){
+            document.getElementsByClassName('visualTitle')[t].innerHTML = visualString[i][v][s][t]+": ";
+                                    
+            if(visualString[i][v][s][t] == ''){
+                document.getElementsByClassName('visualTitle')[t].hidden = true;
+            }
+            document.getElementsByClassName('visualTitle')[t].innerHTML += 
+            formulaToes(document.getElementById('rev2').innerHTML,document.getElementById('rev3').innerHTML,data1G,data2G,data3G,data4G,data5G,data6G,t);
+            //console.log("Refreshed value");
+                                    
+        }
+        createGraph(calculatorString[i][v][s][0], visualString[i][v][s][0]);
+        changedValue = true;
+        //console.log("Submitted values for "+document.getElementsByClassName('subsectionTitle')[s].innerHTML);
+
+    }
 }
 
-function formulaToes(parent, enter, d1, d2, d3, d4, i){
+//formulas the toes into multiple categories based on texture
+function formulaToes(parent, enter, d1, d2, d3, d4, d5, d6, i){
     parentG = parent;
     enterG = enter;
     data1G = d1;
     data2G = d2;
     data3G = d3;
     data4G = d4;
+    data5G = d5;
+    data6G = d6;
     iG = i;
     let output;
     output = 0.001;
@@ -965,7 +1181,14 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 if(i == 1){
                     let stamina;
                     stamina = 100 + 5*level + (agility + strength + vitality) / 10;
+                    stamina = Math.round(stamina*10)/10
                     output =  stamina;
+                }
+                if(i == 2){
+                    let staminaRegen;
+                    staminaRegen = 100 + 5*level + (agility + strength + vitality) / 10;
+                    staminaRegen = (Math.round(staminaRegen*10)/10) / 28;
+                    output = staminaRegen;
                 }
                 if(typeof i === 'string' || i instanceof String){
                     if(i == '0'){
@@ -975,8 +1198,13 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     }
                     if(i == '1'){
                         let stamina;
-                        stamina = '100 + 5*x + '+(agility + strength + vitality) / 10;
+                        stamina = 'Math.round((100 + 5*x + '+(agility + strength + vitality) / 10+')*10) / 10';
                         return stamina;
+                    }
+                    if(i == '2'){
+                        let staminaRegen;
+                        staminaRegen = '(Math.round((100 + 5*x + '+(agility + strength + vitality) / 10+')*10) / 10) / 28';
+                        return staminaRegen;
                     }
                 }
             }
@@ -1335,7 +1563,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                 }
             }
         }
-        else if(parent == "Weapon and Gear Data"){
+        else if(parent == "Inventory Data"){
             //Weapon and Gear Data
             if(enter == "Weapon Damage"){
                 weaponSK = Number(d1);
@@ -1694,16 +1922,31 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     }
                 }
             }
+            else if(enter == "Material Worth"){
+
+            }
+            else if(enter == "Consumable Worth"){
+
+            }
         }
-        else if(parent == "Mob Data"){
+        else if(parent == "Entity Data"){
             //Mob/Boss Data
-            if(enter == "Health"){
+            if(enter == "Mob Health"){
                 mobLevel = Number(d1);
+                night = Boolean(d2);
                 if(i == 0){
                     //estimation
                     let mobHealth;
                     mobHealth = Math.round(((-4/3)*mobLevel + 20.6013 * Math.pow(mobLevel, 1.36611) + 19.4195) / 10) * 10;
                     output = mobHealth;
+                }
+                if(i == 1){
+                    if(night){
+                        let mobHealth;
+                        mobHealth = Math.round(((-4/3)*mobLevel + 20.6013 * Math.pow(mobLevel, 1.36611) + 19.4195) / 10) * 10;
+                        mobHealth += 40*mobLevel -1370 + 2.5*Math.floor((mobLevel-9)/2.75);
+                        output = mobHealth;
+                    }
                 }
                 if(typeof i === 'string' || i instanceof String){
                     if(i == '0'){
@@ -1712,9 +1955,17 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                         mobHealth = 'Math.round(((-4/3)*x + 20.6013 * Math.pow(x, 1.36611) + 19.4195) / 10) * 10';
                         return mobHealth;
                     }
+                    if(i == '1'){
+                        if(night){
+                            let mobHealth;
+                            mobHealth = 'Math.round(((-4/3)*mobLevel + 20.6013 * Math.pow(mobLevel, 1.36611) + 19.4195) / 10) * 10';
+                            mobHealth += '+40*mobLevel -1370 + 2.5*Math.floor((mobLevel-9)/2.75)';
+                            return mobHealth;
+                        }
+                    }
                 }
             }
-            else if(enter == "Experience"){
+            else if(enter == "Mob Experience"){
                 mobLevel = Number(d1);
                 if(i == 0){
                     let mobExperience;
@@ -1729,7 +1980,44 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     }
                 }
             }
-            else if(enter == "Col"){
+            else if(enter == "Mob Damage"){
+                mobLevel = Number(d1);
+                if(i == 0){
+                    let mobDamage;
+                    mobDamage = -5.518*Math.pow(10,6) * Math.pow(mobLevel, -1.31869);
+                    mobDamage += 0.46077*Math.pow(mobLevel, 1.73794);
+                    mobDamage += 5.518*Math.pow(10,6)*Math.pow(mobLevel, -1.31868);
+                    mobDamage += 8.62832*mobLevel - 24.3971;
+                    output = mobDamage;
+                }
+                if(i == 1){
+                    let mobDamage;
+                    mobDamage = -0.00393671*Math.pow(mobLevel, 2.31455);
+                    mobDamage += 9.2093*Math.pow(10,-18) * Math.pow(mobLevel, 8.79928);
+                    mobDamage += 20.2464*Math.pow(mobLevel, 1.19025);
+                    mobDamage += -20.2696*mobLevel + 10.5413;
+                    output = mobDamage;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == "0"){
+                        let mobDamage;
+                        mobDamage = "-5.518*Math.pow(10,6) * Math.pow(x, -1.31869)";
+                        mobDamage += "+0.46077*Math.pow(x, 1.73794)";
+                        mobDamage += "+5.518*Math.pow(10,6) * Math.pow(x, -1.31868)";
+                        mobDamage += "+8.62832*x - 24.3971";
+                        return mobDamage;
+                    }
+                    if(i == "1"){
+                        let mobDamage;
+                        mobDamage = "-0.00393671*Math.pow(x, 2.31455)";
+                        mobDamage += "+9.2093*Math.pow(10,-18) * Math.pow(x, 8.79928)";
+                        mobDamage += "+20.2464*Math.pow(x, 1.19025)";
+                        mobDamage += "-20.2696*x + 10.5413";
+                        return mobDamage;
+                    }
+                }
+            }
+            else if(enter == "Mob Col"){
                 mobLevel = Number(d1);
                 if(i == 0){
                     let mobCol;
@@ -1744,9 +2032,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     }
                 }
             }
-        }
-        else if(parent == "Boss Data"){
-            if(enter == "Health"){
+            if(enter == "Boss Health"){
                 bossLevel = Number(d1);
                 if(i == 0){
                     //estimation
@@ -1763,7 +2049,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     }
                 }
             }
-            else if(enter == "Experience"){
+            else if(enter == "Boss Experience"){
                 bossLevel = Number(d1);
                 if(i == 0){
                     let bossExperience;
@@ -1778,7 +2064,28 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                     }
                 }
             }
-            else if(enter == "Col"){
+            else if(enter == "Boss Damage"){
+                bossLevel = Number(d1);
+                if(i == 0){
+                    let bossDamage;
+                    bossDamage = -0.00393671*Math.pow(bossLevel, 2.31455);
+                    bossDamage += 9.2093*Math.pow(10,-18) * Math.pow(bossLevel, 8.79928);
+                    bossDamage += 20.2464*Math.pow(bossLevel, 1.19025);
+                    bossDamage += -20.2696*bossLevel + 10.5413;
+                    output = bossDamage;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == "0"){
+                        let bossDamage;
+                        bossDamage = "-0.00393671*Math.pow(x, 2.31455)";
+                        bossDamage += "+9.2093*Math.pow(10,-18) * Math.pow(x, 8.79928)";
+                        bossDamage += "+20.2464*Math.pow(x, 1.19025)";
+                        bossDamage += "-20.2696*x + 10.5413";
+                        return bossDamage;
+                    }
+                }
+            }
+            else if(enter == "Boss Col"){
                 bossLevel = Number(d1);
                 if(i == 0){
                     let bossCol;
@@ -1790,6 +2097,201 @@ function formulaToes(parent, enter, d1, d2, d3, d4, i){
                         let bossCol;
                         bossCol = '24 * x';
                         return bossCol;
+                    }
+                }
+            }
+        }
+        else if(parent == "Status Data"){
+            if(enter == "Damage"){
+                health = Number(d1);
+                vitality = Number(d2);
+                statusEffect = d3;
+                armor = String(d4) == 'true';
+                uppHead = String(d5) == 'true';
+                lowHead = String(d6) == 'true';
+                if(i == 0){
+                    let statusDmg;
+                    let resistance;
+                    resistance = 0;
+                    if(armor){
+                        resistance += .4;
+                    }
+                    if(uppHead){
+                        resistance += .2;
+                    }
+                    if(lowHead){
+                        resistance += .2;
+                    }
+                    resistance += vitality/10000;
+                    if(statusEffect == "Poison"){
+                        statusDmg = Math.ceil((health*(1-resistance))/200);
+                    }
+                    else if(statusEffect == "Bleed"){
+                        statusDmg = Math.ceil((health*(1-resistance))/200);
+                    }
+                    else if(statusEffect == "Freeze"){
+                        statusDmg = Math.ceil((health*(1))/80);
+                    }
+                    else if(statusEffect == "Burn"){
+                        statusDmg = Math.ceil((health*(1-resistance))/40);
+                    }
+                    else if(statusEffect == "Paralysis"){
+                        statusDmg = 0;
+                    }
+                    else if(statusEffect == "Decay"){
+                        statusDmg = Math.ceil((health*(1-resistance))/20);
+                    }
+                    else if(statusEffect == "Light"){
+                        statusDmg = Math.ceil((health*(1-resistance))/20);
+                    }
+                    output = statusDmg;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let statusDmg;
+                        let resistance;
+                        resistance = 0;
+                        if(armor){
+                            resistance += .4;
+                        }
+                        if(uppHead){
+                            resistance += .2;
+                        }
+                        if(lowHead){
+                            resistance += .2;
+                        }
+                        resistance += vitality/10000;
+                        if(statusEffect == "Poison"){
+                            statusDmg = "Math.ceil((x*(1-"+resistance+"))/200)";
+                        }
+                        else if(statusEffect == "Bleed"){
+                            statusDmg = "Math.ceil((x*(1-"+resistance+"))/200)";
+                        }
+                        else if(statusEffect == "Freeze"){
+                            statusDmg = "Math.ceil((x*(1))/80)";
+                        }
+                        else if(statusEffect == "Burn"){
+                            statusDmg = "Math.ceil((x*(1-"+resistance+"))/40)";
+                        }
+                        else if(statusEffect == "Paralysis"){
+                            statusDmg = '0';
+                        }
+                        else if(statusEffect == "Decay"){
+                            statusDmg = "Math.ceil((x*(1-"+resistance+"))/20)";
+                        }
+                        else if(statusEffect == "Light"){
+                            statusDmg = "Math.ceil((x*(1-"+resistance+"))/20)";
+                        }
+                        return statusDmg;
+                    }
+                }
+            }
+            else if(enter == "Duration"){
+                vitality = Number(d1);
+                statusEffect = d2;
+                armor = String(d3) == 'true';
+                uppHead = String(d4) == 'true';
+                lowHead = String(d5) == 'true';
+                if(i == 0){
+                    let statusDura;
+                    let resistance;
+                    resistance = 0;
+                    if(armor){
+                        resistance += .4;
+                    }
+                    if(uppHead){
+                        resistance += .2;
+                    }
+                    if(lowHead){
+                        resistance += .2;
+                    }
+                    resistance += vitality/10000;
+                    if(statusEffect == "Freeze"){
+                        statusDura = 5*(1-resistance);
+                    }
+                    else if(statusEffect == "Paralysis"){
+                        statusDura = 5*(1-resistance);
+                    }
+                    else{
+                        statusDura = 5;
+                    }
+                    output = statusDura;
+                }
+                if(i == 1){
+                    let statusDura;
+                    let resistance;
+                    resistance = 0;
+                    if(armor){
+                        resistance += .4;
+                    }
+                    if(uppHead){
+                        resistance += .2;
+                    }
+                    if(lowHead){
+                        resistance += .2;
+                    }
+                    resistance += vitality/10000;
+                    if(statusEffect == "Freeze"){
+                        statusDura = 7*(1-resistance);
+                    }
+                    else if(statusEffect == "Paralysis"){
+                        statusDura = 7*(1-resistance);
+                    }
+                    else{
+                        statusDura = 7;
+                    }
+                    output = statusDura;
+                }
+                if(typeof i === 'string' || i instanceof String){
+                    if(i == '0'){
+                        let statusDura;
+                        let resistance;
+                        resistance = 0;
+                        if(armor){
+                            resistance += .4;
+                        }
+                        if(uppHead){
+                            resistance += .2;
+                        }
+                        if(lowHead){
+                            resistance += .2;
+                        }
+                        //resistance += vitality/10000;
+                        if(statusEffect == "Freeze"){
+                            statusDura = "5*(1-"+resistance+"-x/10000)";
+                        }
+                        else if(statusEffect == "Paralysis"){
+                            statusDura = '5*(1-'+resistance+'-x/10000)';
+                        }
+                        else{
+                            statusDura = "5";
+                        }
+                        return statusDura;
+                    }
+                    if(i == '1'){
+                        let statusDura;
+                        let resistance;
+                        resistance = 0;
+                        if(armor){
+                            resistance += .4;
+                        }
+                        if(uppHead){
+                            resistance += .2;
+                        }
+                        if(lowHead){
+                            resistance += .2;
+                        }
+                        //resistance += vitality/10000;
+                        if(statusEffect == "Freeze"){
+                            statusDura = "7*(1-"+resistance+"-x/10000)";
+                        }
+                        else if(statusEffect == "Paralysis"){
+                            statusDura = '7*(1-'+resistance+'-x/10000)';
+                        }
+                        else{
+                            statusDura = "7";
+                        }
+                        return statusDura;
                     }
                 }
             }
@@ -1841,7 +2343,7 @@ function resetVar(){
 
 function createGraph(calcStr, visStr){
     //console.log(document.getElementsByClassName('myPlot').attributes);
-    let exp = formulaToes(parentG,enterG,data1G,data2G,data3G,data4G,''+0);
+    let exp = formulaToes(parentG,enterG,data1G,data2G,data3G,data4G,data5G,data6G,''+0);
 
     let myCanvas = document.getElementById('canv');
     const dpr = 2*window.devicePixelRatio;
@@ -1867,14 +2369,14 @@ function createGraph(calcStr, visStr){
         xaxis: {
             title: ''+calcStr,
             titlefont: {
-            family: 'Arial, sans-serif',
+            family: 'Chakra Petch, sans-serif',
             size: 18,
             color: 'lightgrey'
             },
             showticklabels: true,
             tickangle: 'auto',
             tickfont: {
-                family: 'Old Standard TT, serif',
+                family: 'Chakra Petch, serif',
                 size: 14,
                 color: 'white'
             },
@@ -1885,14 +2387,14 @@ function createGraph(calcStr, visStr){
         yaxis: {
             title: ''+visStr,
             titlefont: {
-            family: 'Arial, sans-serif',
+            family: 'Chakra Petch, sans-serif',
             size: 18,
             color: 'lightgrey'
             },
             showticklabels: true,
             tickangle: 45,
             tickfont: {
-                family: 'Old Standard TT, serif',
+                family: 'Chakra Petch, serif',
                 size: 14,
                 color: 'white'
             },
@@ -1906,201 +2408,138 @@ function createGraph(calcStr, visStr){
         height: 3*height,
         plot_bgcolor: 'rgb(50, 50, 50)',
         paper_bgcolor: 'rgb(27, 27, 27)',
+        dragmode: "pan"
         };
-    Plotly.newPlot("myPlot", data, layout, {modeBarButtonsToRemove: ['toImage','select2d','lasso2d','resetScale2d','zoom2d','toggleSpikelines'], scrollZoom: true, displaylogo: false, responsive: true});
+    const config = {
+        modeBarButtonsToRemove: [
+            'toImage','select2d','lasso2d',
+            'resetScale2d','zoom2d','toggleSpikelines'
+        ], 
+        scrollZoom: true, 
+        displaylogo: false, 
+        responsive: true
+    }
+    Plotly.newPlot("myPlot", data, layout, config);
+    function updateData(leftx, rightx){
+        const xValues_update = [];
+        const yValues_update = [];
+        let steps;
+        
+        steps = Math.abs(rightx-leftx)/1000;
+        dist = Math.abs(rightx-leftx);
+        
+        for (let y = leftx; y <= rightx; y += steps) {
+            let x;
+            if(dist > 10){
+                x = Math.round(y);
+            }
+            else{
+                x = y;
+            }
+            xValues_update.push(x);
+            yValues_update.push(eval(exp));
+        }
+        const data_update = [{x:xValues_update, y:yValues_update, mode:"lines"}];
+        Plotly.react("myPlot",data_update, layout);
+        return true;
+    }
+    
+    document.getElementById("myPlot").on('plotly_relayout',
+        function(eventdata){
+            let check;
+            if(typeof eventdata['xaxis.range[0]'] !== 'undefined'){
+                check = updateData(eventdata['xaxis.range[0]'], eventdata['xaxis.range[1]']);
+                currentXRange = eventdata['xaxis.range[0]'];
+                currentYRange = eventdata['xaxis.range[1]']
+            }
+            if(eventdata['xaxis.autorange'] == true){
+                Plotly.react("myPlot",data, layout);
+            }
+            else if(!check){
+                //Plotly.relayout('myPlot', {
+                //    'xaxis.autorange': true,
+                //    'yaxis.autorange': true
+                //});
+                //Plotly.react("myPlot",data, layout);
+                updateData(currentXRange, currentYRange);
+                console.log("Screen has been resized or a mobile bug has occurred.");
+            }
+        }
+    );
+    
+    if(changedValue == true){
+        //if possible add a timer, such as 2 seconds so that so
+        //many calculations arent needed
+        updateData(currentXRange, currentYRange);
+        changedValue = false;
+    }
     return;
-
-    //Halt so that unnecessary processing does not take place
-
-    
-    const ctx = myCanvas.getContext("2d", { alpha: true });
-    myCanvas.hidden = false;
-
-    //Note: The following is code found and adjusted from 
-    //https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas
-    // Get the DPR and size of the canvas
-    
-
-    // Set the "actual" size of the canvas
-    myCanvas.width = rect.width * dpr;
-    myCanvas.height = rect.height * dpr;
-
-    // Scale the context to ensure correct drawing operations
-    ctx.scale(2*dpr, 2.15*dpr);
-
-    // Set the "drawn" size of the canvas
-    myCanvas.style.width = `${2*width}px`;
-    myCanvas.style.height = `${2*height}px`;
-    //end of adjusted code//
-
-    if(tries == 0){
-        myCanvas.hidden = true;
-        tries++;
-        return;
-    }
-
-    ctx.beginPath();
-    //the graph needs to be shifted down and to the right
-    let padding = width/20;
-    let labelPadding = width/20;
-    let gridColor = "#dfdfdf";
-    let pointColor = '#000000';
-    let lineColor = "#2c66e6";
-    let pointWidth = 10;
-    let numberYDivisions = 10;
-
-    let MAX = 500;
-    let step = 2;
-    let maxComponents = MAX/step +1;
-
-    let counter;
-    counter = 0;
-    let ymax;
-    ymax = 0;
-    let ymin;
-    ymin = 1e10;
-
-    const xcoords = []; //holds all x coordinates 
-    const ycoords = []; //holds all y coordinates
-
-    
-    let temp = data1G; //saves the previously used data
-    //get x and y values to display
-    for(let i = 0; i <= MAX; i += step){
-        xcoords.push(i);
-        ycoords.push(formulaToes(parentG, enterG, i, data2G, data3G, data4G, 0));
-    }
-    data1G = temp; //sets the previously used data
-    //find ycoord max value
-    for(let v = 0; v < MAX/step + 1; v++){
-        if(ycoords[v] > ymax){
-            ymax = ycoords[v];
-        }
-    }
-    //find ycoord lowest value
-    for(let v = 0; v < MAX/step +1; v++){
-        if(ycoords[v] < ymin){
-            ymin = ycoords[v];
-        }
-    }
-
-    document.getElementById('graphAlt').innerHTML = 
-        'A graph of the function relating the first input and first output presented.<br>TO DO:<br>';
-    document.getElementById('graphAlt').innerHTML +=
-        'The current point position is (x,y).<br>The minimum value is at point (x1,y1) and the maximum value is at point (x2,y2).<br>';
-    //Note: The following is code found and adjusted from 
-    //https://stackoverflow.com/questions/8693342/ by Rodrigo Castro
-    ctx.clearRect(0,0,500,500);
-    ctx.fillStyle = 'white';
-    ctx.fillRect(padding + labelPadding, padding, width - (2 * padding) - labelPadding, height - 2 * padding - labelPadding);
-    ctx.fillStyle = 'black';
-    // create hatch marks and grid lines for y axis.
-    for (let i = 0; i < numberYDivisions+1; i++) {
-        let x0 = padding + labelPadding;
-        let x1 = pointWidth + padding + labelPadding;
-        let y0 = height - ((i * (height - padding * 2 - labelPadding)) / numberYDivisions + padding + labelPadding);
-        let y1 = y0;
-            
-            ctx.strokeStyle = gridColor;
-            ctx.moveTo(padding + labelPadding + 1 + pointWidth, y0);
-            ctx.lineTo(width - padding, y1);
-            ctx.stroke();
-            ctx.closePath();
-            ctx.beginPath();
-            ctx.strokeStyle = 'black';
-            ctx.font = Math.floor(width/45)+'px Arial'
-            let yLabel;
-            yLabel = ""+(parseFloat((i*.1*(ymax-ymin))+ymin).toPrecision(7));
-            if(isNaN(yLabel)){
-                yLabel = '0.00';
-            }
-            let labelWidth = ctx.measureText(yLabel).width;
-            ctx.fillText(yLabel, x0 - Math.floor(labelWidth) - 5, y0 + (5 / 2) - 3);
-            ctx.closePath();
-        if(i != 0){
-            ctx.moveTo(x0, y0);
-            ctx.lineTo(x1, y1);
-            ctx.stroke();
-            
-        }
-
-    }
-    // and for x axis
-    for (let i = 0; i < MAX+1; i++) {
-            
-        let x0 = i * (width - padding * 2 - labelPadding) / (MAX - 1) + padding + labelPadding;
-        let x1 = x0;
-        let y0 = height - padding - labelPadding;
-        let y1 = y0 - pointWidth;
-        if ((i % (((MAX / 10.0)))) == 0) {
-            ctx.strokeStyle = gridColor;
-            ctx.moveTo(x0, height - padding - labelPadding - 1 - pointWidth);
-            ctx.lineTo(x1, padding);
-            ctx.stroke();
-            ctx.closePath();
-            ctx.beginPath();
-            ctx.strokeStyle = 'black';
-            let xLabel = i + "";
-            let labelWidth = ctx.measureText(xLabel).width;
-            ctx.fillText(xLabel, x0 - labelWidth / 2, y0 + (width/45));
-        if(i != 0){
-            ctx.moveTo(x0, y0);
-            ctx.lineTo(x1, y1);
-            ctx.stroke();
-            }
-        }
-    }
-    ctx.moveTo(padding + labelPadding, height - padding - labelPadding);
-    ctx.lineTo(padding + labelPadding, padding);
-    ctx.stroke();
-    ctx.moveTo(padding + labelPadding, height - padding - labelPadding);
-    ctx.lineTo(width - padding, height - padding - labelPadding);
-    ctx.stroke();
-    ctx.closePath();
-    
-    ctx.beginPath();
-    ctx.strokeStyle = lineColor;
-    ctx.lineWidth = 1;
-
-    let xScale = (width - (2 * padding) - labelPadding) / (MAX - 1);
-    let yScale;
-    if(ymax != 0){
-        yScale = (height - 2 * padding - labelPadding) / (ymax - ymin);
-    }
-    else{
-        yScale = 1;
-    }
-
-    //change x and y coords in accordance with the  setup
-    const graphxPoints = [];
-    const graphyPoints = [];
-    for (let i = 0; i < MAX+1; i+= step) {
-        let x1 = Math.floor(i * xScale + padding + labelPadding);
-        let y1;
-        if(ymax != 0){
-            y1 = Math.floor((ymax - ycoords[counter]) * yScale + padding);
-        }
-        else{
-            //statement in case ymax is 0, since this entails that the
-            //function is constant
-            y1 = Math.floor((ymax - ycoords[counter]) * yScale + height/35*padding);
-        }
-        graphxPoints.push(x1);
-        graphyPoints.push(y1);
-        counter++;
-    }
-    //display graph
-    for (let i = 0; i < graphxPoints.length-1; i++) {
-        let x1 = graphxPoints[i];
-        let y1 = graphyPoints[i];
-        let x2 = graphxPoints[i+1];
-        let y2 = graphyPoints[i+1];
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke(); 
-    }
-    //end of adjusted code//
 }
+
+var textField1 = document.getElementById("textField1");
+// Execute a function when the user presses a key on the keyboard
+textField1.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+
+    //ENSURE that forceAmountToes is called!!
+    forceAmountToes("textField1");
+
+    // Trigger the button element with a click
+    document.getElementById("cal7").click();
+  }
+  if (event.key === " ") {
+    //event.preventDefault();
+    //textField1.innerHTML+= textField1.value + ',';
+    //console.log(document.getElementById("textField1").innerHTML);
+    
+  }
+});
+
+// Execute a function when the user presses a key on the keyboard
+document.getElementById("textField2").addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+
+    //ENSURE that forceAmountToes is called!!
+    forceAmountToes("textField2");
+
+    // Trigger the button element with a click
+    document.getElementById("cal7").click();
+  }
+});
+// Execute a function when the user presses a key on the keyboard
+document.getElementById("textField3").addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+
+    //ENSURE that forceAmountToes is called!!
+    forceAmountToes("textField3");
+
+    // Trigger the button element with a click
+    document.getElementById("cal7").click();
+  }
+});
+// Execute a function when the user presses a key on the keyboard
+document.getElementById("textField4").addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+
+    //ENSURE that forceAmountToes is called!!
+    forceAmountToes("textField4");
+
+    // Trigger the button element with a click
+    document.getElementById("cal7").click();
+  }
+});
 
 //Calls setup
 window.onload = function(){
@@ -2113,4 +2552,6 @@ window.onload = function(){
     setupCanvas();
     //createGraph();
     console.log("Loaded Buttons");
+    //remove once other games are added
+    document.getElementById("gam1").click();
 }
