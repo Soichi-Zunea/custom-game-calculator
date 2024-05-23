@@ -1592,8 +1592,11 @@ function formulaToes(parent, enter, d1, d2, d3, d4, d5, d6, i){
                         if(type == "Dagger"){
                             weaponDamage = 21.4516 * Math.pow(weaponSK, -1.14518);
                             weaponDamage += 0.511652 * Math.pow(weaponSK, 1.37416);
-                            weaponDamage += 0.057236 * weaponSK;
+                            weaponDamage += 10.976836 * weaponSK;
                             weaponDamage += -23.5568 * Math.pow(weaponSK, -1.81666) * Math.sin(2.16489 * Math.pow(weaponSK, 0.731571));
+				weaponDamage += ((146.245*weaponSK+11876.1)*(72.2266*weaponSK+82.3802)*(10.9196*weaponSK-1.10078))/((81.6589*weaponSK+84.379)*(-1.4703*weaponSK-97.7443)*(0.109724*weaponSK+120.002)) -1.10078;
+				weaponDamage *= .5;
+			 	weaponDamage = Math.round(weaponDamage);
                         }
                     }
                     output =  weaponDamage;
@@ -1620,10 +1623,12 @@ function formulaToes(parent, enter, d1, d2, d3, d4, d5, d6, i){
                                 weaponDamage += '+2.766';
                             }
                             if(type == "Dagger"){
-                                weaponDamage = '21.4516 * Math.pow(x, -1.14518)';
+                                weaponDamage = 'Math.round((21.4516 * Math.pow(x, -1.14518)';
                                 weaponDamage += '+0.511652 * Math.pow(x, 1.37416)';
-                                weaponDamage += '+0.057236 * x';
+                                weaponDamage += '+10.976836 * x';
                                 weaponDamage += '-23.5568 * Math.pow(x, -1.81666) * Math.sin(2.16489 * Math.pow(x, 0.731571))';
+				weaponDamage += '+((146.245*x+11876.1)*(72.2266*x+82.3802)*(10.9196*x-1.10078))/((81.6589*x+84.379)*(-1.4703*x-97.7443)*(0.109724*x+120.002)) -1.10078)';
+				weaponDamage += '*.5)';
                             }
                         }
                         return weaponDamage;
@@ -1658,6 +1663,21 @@ function formulaToes(parent, enter, d1, d2, d3, d4, d5, d6, i){
                     if(user){
                         if(type == "Dagger"){
                             //checked
+				if(skillNumber == 1){
+					skillDamage = Math.floor(1.4951 * weaponDmg);
+				}
+				if(skillNumber == 2){
+					skillDamage = Math.floor(2.14103 * weaponDmg);
+				}
+				if(skillNumber == 3){
+					skillDamage = Math.round(2.64 * weaponDmg);
+				}
+				if(skillNumber == 4){
+					skillDamage = Math.floor(3.14 * weaponDmg);
+				}
+				if(skillNumber == 5){
+					skillDamage = Math.ceil(3.342 * weaponDmg);
+				}
                             if(skillNumber == 6){
                                 skillDamage = Math.round(3.5485 * weaponDmg);
                             }
@@ -1666,15 +1686,15 @@ function formulaToes(parent, enter, d1, d2, d3, d4, d5, d6, i){
                             }
                             //assumed, first 3 seem to be different, with the last 4 following
                             //the below formula
-                            else{
-                                skillDamage = Math.round((2.3485 + 0.2 * skillNumber) * weaponDmg);
-                            }
+                            //else{
+                                //skillDamage = Math.round((2.3485 + 0.2 * skillNumber) * weaponDmg);
+                            //}
                         }
-                        else{
+                        else{ //other weapons not yet done
                             skillDamage = 0;
                         }
                     }
-                    else{
+                    else{ //NPC/mob/boss dmg yet to be formulated
                         skillDamage = 0;
                     }
                     output = skillDamage;
@@ -1686,6 +1706,21 @@ function formulaToes(parent, enter, d1, d2, d3, d4, d5, d6, i){
                         if(user){
                             if(type == "Dagger"){
                                 //checked
+				if(skillNumber == 1){
+					skillDamage = 'Math.floor(1.4951 * x)';
+				}
+				if(skillNumber == 2){
+					skillDamage = 'Math.floor(2.14103 * x)';
+				}
+				if(skillNumber == 3){
+					skillDamage = 'Math.round(2.64 * x)';
+				}
+				if(skillNumber == 4){
+					skillDamage = 'Math.floor(3.14 * x)';
+				}
+				if(skillNumber == 5){
+					skillDamage = 'Math.ceil(3.342 * x)';
+				}
                                 if(skillNumber == 6){
                                     skillDamage = 'Math.round(3.5485 * x)';
                                 }
@@ -1694,9 +1729,9 @@ function formulaToes(parent, enter, d1, d2, d3, d4, d5, d6, i){
                                 }
                                 //assumed, first 3 seem to be different, with the last 4 following
                                 //the below formula
-                                else{
-                                    skillDamage = 'Math.round((2.3485 + 0.2 * '+skillNumber+') * x)';
-                                }
+                                //else{
+                                    //skillDamage = 'Math.round((2.3485 + 0.2 * '+skillNumber+') * x)';
+                                //}
                             }
                             else{
                                 skillDamage = '0';
@@ -1923,7 +1958,7 @@ function formulaToes(parent, enter, d1, d2, d3, d4, d5, d6, i){
                 }
             }
             else if(enter == "Material Worth"){
-
+		
             }
             else if(enter == "Consumable Worth"){
 
